@@ -19,7 +19,8 @@
     // si il y a le mot 'action' dans mon URL on switch
     if(isset($_GET['action'])){
         // si j'ai 'id' dans l'url ...
-    $id = filter_input(INPUT_GET,"id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id = filter_input(INPUT_GET,"id", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // var_dump($id); die;
         // alors on switch vers les différents 'action' possibles 
         switch($_GET['action']){
             // 1er case listFilms : pour avoir accès à listFilms, tu vas chercher $movieCtrl et va voir si listFilms existe 
@@ -31,6 +32,13 @@
             break;
             case "listGenres": $genreCtrl->findAllGenres();
             break;
+            case "detailMovie": $movieCtrl->findOneById($id);
+            break;
+            case "casting": $movieCtrl->showCasting($id);
+            break;
+
+            
+        
             // case "listActors": $personCtrl->findAllActors(); break;
             default : $homeCtrl->homePage();
         }

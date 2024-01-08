@@ -14,18 +14,28 @@ ob_start();
 <!-- rowCount() fonction native qui calcule le nombre d'enregistrements que récupère une requête -->
 <h1>Liste des films : <span><?= $films->rowCount() ?></span></h1>
     <?php
-    while ($film = $films->fetch()) { ?>
-    <div>
-        <p><strong><?=$film['title']?></strong></p>
-        <a href="index.php?action=detailFilm&id=<?$film['id_film']?>">Détail Film</a>
-    </div>
+    while ($film = $films->fetch()) { 
+    
+    ?>
+       <div>
+            <figure>
+                <a href="index.php?action=detailMovie&id=<?=$film['id_film']?>">
+                    <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
+                </a>
+                <figcaption>
+                    <a href="#"><strong><?= $film['title'] ?></strong></a>
+                </figcaption>
+            </figure>
+
+        </div>
+
     <?php }
     ?>
 </div>
 
 <?php
 
-$title = "liste des films";
+$title = "Liste des films";
 $content = ob_get_clean();
 require "views/template.php";
 ?>

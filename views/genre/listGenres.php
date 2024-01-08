@@ -10,7 +10,7 @@ ob_start();
     <?php
     while ($genre= $genres->fetch()){ ?>
     <div>
-        <p><strong><?=$genre['genre_name']?></strong></p>
+        <p><strong><?=$genre['genre_name']?> : <?=$genre['title']?></strong></p>
     </div>
 <?php }
 ?>
