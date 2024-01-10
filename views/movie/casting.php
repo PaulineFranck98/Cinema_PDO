@@ -11,7 +11,7 @@ ob_start();
     ?>
         <figure class="casting-figures">
             <p><?=$actor['role_name']?></p>
-            <a href="#">
+            <a href="index.php?action=actorDetail&id=<?=$actor['id_actor']?>">
                 <img src="./public/images/<?= $actor['picture'] ?>" alt="picture of actor : <?=$actor['actor']?>">
             </a>
             <figcaption>

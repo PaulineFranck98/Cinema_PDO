@@ -12,7 +12,7 @@
     $personCtrl = new PersonController();
     $movieCtrl = new MovieController();
     $genreCtrl = new GenreController();
-
+ 
     // index.php va intercepter la requête HTTP et va orienter vers le bon controller et la bonne méthode 
     //  ex : index.php?action=listFilms
     // on passe ici par l'URL avec GET
@@ -36,14 +36,17 @@
             break;
             case "casting": $movieCtrl->showCasting($id);
             break;
-            case "homePage" : $homeCtrl->findLastMovies();
+            case "homePage" : $homeCtrl->homePage();
+            break;
+            case "actorDetail" : $personCtrl->findActorById($id);
+            break;
+            case "directorDetail" : $personCtrl->findDirectorById($id);
             break;
 
-            
         
-            // case "listActors": $personCtrl->findAllActors(); break;
             default : $homeCtrl->homePage();
         }
+        
     } else {
         //Si l'url de contient pas d'action enregistrer, ont fait appel au constructeur homepage, pour afficher la page d'acceuil par défaut
         $homeCtrl->homePage();

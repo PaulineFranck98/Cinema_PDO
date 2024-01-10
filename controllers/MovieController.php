@@ -32,6 +32,13 @@ class MovieController{
                      FROM film f
                      WHERE id_film = :id";
 
+        $sql2 = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, p.picture, d.id_director, f.title, f.id_film
+                        FROM person p INNER JOIN director d
+                        ON p.id_person = d.person_id
+                        INNER JOIN film f
+                        ON d.id_director = f.director_id
+                        WHERE id_film = :id";
+
         $params = [
             'id' => $id,
         ];
@@ -41,6 +48,9 @@ class MovieController{
         $dureeFilmObject = $dao->executerRequete($sqlDuree, $params);
 
         $time = $this->durationMovie($dureeFilmObject);
+
+        $filmDirector = $dao->executerRequete($sql2, $params);
+
         
         require "views/movie/detailMovie.php"; 
         
@@ -49,7 +59,7 @@ class MovieController{
 
         $dao = new DAO();
 
-        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS actor, r.role_name, p.picture
+        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS actor, a.id_actor, r.role_name, p.picture
                 FROM casting c INNER JOIN film f
                 ON c.film_id = f.id_film
                 INNER JOIN actor a
