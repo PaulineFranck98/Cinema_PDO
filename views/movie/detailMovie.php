@@ -3,20 +3,23 @@
 ob_start();
 ?>
 
-   <?php while ($movie = $film->fetch()) { 
+<?php while ($movie = $film->fetch()) { 
     ?>
-    <div>
-    <figure>
+    <h1 class="h1_detail"><?= mb_strtoupper($movie['title']) ?></h1>
+    <div class="detail-container">
+        <figure>
             <img src="./public/images/<?= $movie['picture'] ?>" alt="picture of film : <?= $movie['title'] ?>">
-        <figcaption>
-            <strong><?= $movie['title'] ?></strong>
-            <a href="index.php?action=casting&id=<?=$movie['id_film']?>">Casting</a>
-        </figcaption>
-    </figure>
-    <p>Synopsis : <?= $movie['synopsis'] ?></p>
-    <p>Durée du film : <?= $time ?></p>
+            <figcaption>
+                <a href="index.php?action=casting&id=<?=$movie['id_film']?>">Casting</a>
+            </figcaption>
+        
+        </figure>
+        <div class="detail-aside">
+            <p>Synopsis : <br><br> <?= $movie['synopsis'] ?></p>
+            <p class="border"></p>
+            <p>Durée du film : <?= $time ?></p>
 
-
+        </div>
     </div>
    <?php }
     ?>

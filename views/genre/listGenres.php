@@ -4,17 +4,40 @@ ob_start();
 
 ?>
 
-
 <div>
     <h1>Liste des genres</h1>
+
     <?php
-    while ($genre= $genres->fetch()){ ?>
-    <div>
-        <p><strong><?=$genre['genre_name']?> : <?=$genre['title']?></strong></p>
-    </div>
-<?php }
-?>
+    $currentGenre = null;
+    while ($genre = $genres->fetch()) {
+        if ($currentGenre !== $genre['genre_name']) {
+        ?>
 </div>
+<div>
+        <h2><?=$genre['genre_name']?></h2>
+        <div class="films-grid1">
+            <?php
+                $currentGenre = $genre['genre_name'];
+            }
+                
+            ?>
+            <figure class="figure_films1">
+                <a href="index.php?action=detailMovie&id=<?=$genre['id_film']?>">
+                    <img src="./public/images/<?=$genre['picture']?>" alt="picture of film :<?=$genre['title']?>">
+                </a>
+                <figcaption>
+                    <a href="index.php?action=detailMovie&id='<?=$genre['id_film']?>"><?=$genre['title']?></a>
+                </figcaption>
+            </figure>
+            
+    <?php
+       
+        
+    }
+    ?>
+        </div>
+</div>
+
 
 <?php
 $title = "Liste des genres";

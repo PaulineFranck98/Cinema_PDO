@@ -36,6 +36,8 @@
             break;
             case "casting": $movieCtrl->showCasting($id);
             break;
+            case "homePage" : $homeCtrl->findLastMovies();
+            break;
 
             
         

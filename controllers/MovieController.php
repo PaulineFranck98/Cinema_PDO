@@ -16,6 +16,8 @@ class MovieController{
         require "views/movie/listFilms.php"; 
     }
 
+  
+
     public function findOneById($id)
     {
 
@@ -47,7 +49,7 @@ class MovieController{
 
         $dao = new DAO();
 
-        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS actor, r.role_name
+        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS actor, r.role_name, p.picture
                 FROM casting c INNER JOIN film f
                 ON c.film_id = f.id_film
                 INNER JOIN actor a

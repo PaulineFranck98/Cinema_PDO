@@ -14,11 +14,11 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href='index.php?action=homePage'>Page d'accueil</a></li>
-                    <li><a href='index.php?action=listFilms'>Liste des films</a></li>
-                    <li><a href='index.php?action=listActors'>Liste des acteurs</a></li>
-                    <li><a href='index.php?action=listDirectors'>Liste des réalisateurs</a></li>
-                    <li><a href='index.php?action=listGenres'>Liste des genres</a></li>
+                    <li><a href='index.php?action=homePage'>Accueil</a></li>
+                    <li><a href='index.php?action=listFilms'>Films</a></li>
+                    <li><a href='index.php?action=listActors'>Acteurs</a></li>
+                    <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
+                    <li><a href='index.php?action=listGenres'>Genres</a></li>
                 </ul>
             </nav>
         </header>
@@ -29,7 +29,7 @@
 
 
         <footer>
-            <span>Ceci est un footer</span>
+            <!-- <span>Ceci est un footer</span> -->
         </footer>
     </div>
 </body>

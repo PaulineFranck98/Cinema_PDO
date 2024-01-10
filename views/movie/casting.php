@@ -3,25 +3,25 @@
 ob_start();
 ?>
 
-<div>
-    <h1>Casting</h1>
+
+<h1>Casting </h1>
+<div class="casting-grid">
     <?php
-    while ($actor = $castingActors->fetch()){ ?>
-    <div>
-        
-        <p><strong><?=$actor['actor']?></strong></p>
-        <span><?=$actor['role_name']?></span>
-    </div>
-<?php }
-?>
+    while ($actor = $castingActors->fetch()) {
+    ?>
+        <figure class="casting-figures">
+            <p><?=$actor['role_name']?></p>
+            <a href="#">
+                <img src="./public/images/<?= $actor['picture'] ?>" alt="picture of actor : <?=$actor['actor']?>">
+            </a>
+            <figcaption>
+                <a href="#"><strong><?=$actor['actor']?></strong></a>
+            </figcaption>
+        </figure>
+    <?php
+    }
+    ?>
 </div>
-
-
-
-
-
-
-
 
 
 <?php

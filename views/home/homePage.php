@@ -3,9 +3,23 @@
 ob_start();
 ?>
 
-<!-- va afficher le template, et dans ce template va afficher homePage.php -->
-<h2>Ceci est une page d'accueil</h2>
-
+<h1>Nouveaux films : </h1>
+<div class="films-grid">
+    <?php
+    while ($film = $lastmovies->fetch()) {
+    ?>
+        <figure class="figure_films">
+            <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>">
+                <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
+            </a>
+            <figcaption>
+                <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>"><strong><?= $film['title'] ?></strong></a>
+            </figcaption>
+        </figure>
+    <?php
+    }
+    ?>
+</div>
 <?php
 
 $title = "Page d'accueil";
