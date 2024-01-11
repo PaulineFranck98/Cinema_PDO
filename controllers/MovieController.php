@@ -118,7 +118,7 @@ class MovieController{
 
     }
 
-    public function addMovie(){
+    public function showMovieForm(){
         $dao = new DAO();
     
         $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, p.picture, d.id_director
@@ -138,10 +138,23 @@ class MovieController{
         
     }
 
-    public function addActor(){
-        require "views/actor/actorForm.php";
+    public function addMovie(){ 
+        $dao = new DAO();
+        // die('ici');
+        $title = filter_input(INPUT_POST,"title",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $duration = filter_input(INPUT_POST,"duration",FILTER_VALIDATE_INT);
+        $synopsis = filter_input(INPUT_POST,"synopsis",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $release_date = filter_input(INPUT_POST,"release_date",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id_director = filter_input(INPUT_POST,"director",FILTER_VALIDATE_INT);
+
+        // on doit recup toutes les données du formulaire
+
     }
-    public function addDirector(){
+
+    // public function showActorForm(){
+    //     require "views/actor/actorForm.php";
+    // }
+    public function showDirectorForm(){
     
         require "views/director/directorForm.php";
     }

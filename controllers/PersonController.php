@@ -58,7 +58,7 @@ class PersonController{
         $directors = $dao->executerRequete($sql);
 
         require "views/director/listDirectors.php";
-        require "views/director/directorForm.php";
+       
 
     }
 
@@ -85,6 +85,27 @@ class PersonController{
         $directorFilms = $dao->executerRequete($sql1, $params);
 
         require "views/director/directorDetail.php";
+    }
+
+    public function addActorForm()
+    {
+
+        require "views/actor/addActorForm.php";
+    }
+
+    public function addActor(){
+
+        die("You must ");
+        $dao = new DAO();
+
+        //
+
+        // $sql="INSERT INTO person (first_name, last_name, person_gender, birth_date, picture)
+        //       VALUES ('first_name','last_name','person_gender','birth_date','picture')";
+
+        // $addActor = $dao->executerRequete($sql);
+
+       
     }
 
 }

@@ -42,12 +42,18 @@
             break;
             case "directorDetail" : $personCtrl->findDirectorById($id);
             break;
-            case "movieForm" : $movieCtrl->addMovie();
+            case "movieForm" : $movieCtrl->showMovieForm();
             break;
-            case "actorForm" : $movieCtrl->addActor();
+            case "addMovie" : $movieCtrl->addMovie();
             break;
-            case "directorForm" : $movieCtrl->addDirector();
+            case "addActorForm" : $personCtrl->addActorForm();
             break;
+            case "addActor" : $personCtrl->addActor();
+            break;
+            case "directorForm" : $movieCtrl->showDirectorForm();
+            break;
+            
+
 
         
             default : $homeCtrl->homePage();

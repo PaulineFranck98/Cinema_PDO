@@ -6,37 +6,34 @@ ob_start();
 
 <h1>AJOUTER UN FILM</h1>
 <div>
-    <form action="traitement.php?action=add" method="post" enctype="multipart/form-data" class="movieForm">
-        <div>
-        <!-- attribut enctype=multipart/forma-data garantit que les données du formulaire sont codées en tant que données MIME en plusieurs parties (nécessaire pour upload grande qtt de données)-->
-            <label for="fileUpload">Affiche</label> 
-            <input type="file" name="photo" id="fileUpload">
-        </div>
-        <div>
-            <!-- chaque input dispose d'un attribut "name"
-            -> va permettre à la requête de classer le contenu de la saisie dans des clés portant le nom choisi -->
+    <form action="index.php?action=addMovie" method="post" enctype="multipart/form-data" class="movieForm">
+        <div class="film-form">
             <label> Titre </label>
             <input type="text" name="title"> 
         </div>
-        <div>
+        <div class="film-form">
+            <label for="fileUpload">Affiche</label> 
+            <input type="file" name="photo" id="fileUpload">
+        </div>
+        <div class="film-form">
             <label>Durée (en minutes)</label>
             <input type="number" min="0" step="any" name="duration"> 
         </div>  
-        <div>
+        <div class="film-form">
             <label>Synopsis </label>
             <input type="text" name="synopsis"> 
         </div> 
-        <div>
+        <div class="film-form">
             <label>Date de sortie </label>
             <input type="date" name="release_date"> 
         </div>
         <div>
             <label>Réalisateur</label>
-            <select>
+            <select name="director">
                 <?php
                 while ($director = $directors->fetch()) {
                     ?>  
-                    <option><?=$director['director']?></option>
+                    <option value='<?=$director['id_director']?>'><?=$director['director']?></option>
                     <?php 
                 }
                 ?>
@@ -46,7 +43,7 @@ ob_start();
         <div>
             <?php while ($genre = $genres->fetch()){
                 ?>
-                <input type="checkbox" name="synopsis">
+                <input type="checkbox" name="genre" value='<?=$genre['id_genre']?>'>
                 <label><?=$genre['genre_name']?></label>
                 <?php
             }
@@ -59,6 +56,7 @@ ob_start();
     </form>
 </div>
   
+<!-- PDO::lastInsertId -->
 
 
 <?php

@@ -20,7 +20,7 @@
                     <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
                     <li><a href='index.php?action=listGenres'>Genres</a></li>
                     <li><a href='index.php?action=movieForm'>Ajouter film</a></li>
-                    <li><a href='index.php?action=actorForm'>Ajouter acteur</a></li>
+                    <li><a href='index.php?action=addActorForm'>Ajouter acteur</a></li>
                     <li><a href='index.php?action=directorForm'>Ajouter réalisateur</a></li>
                 </ul>
             </nav>
