@@ -58,6 +58,7 @@ class PersonController{
         $directors = $dao->executerRequete($sql);
 
         require "views/director/listDirectors.php";
+        require "views/director/directorForm.php";
 
     }
 

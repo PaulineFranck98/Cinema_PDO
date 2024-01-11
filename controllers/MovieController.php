@@ -118,8 +118,33 @@ class MovieController{
 
     }
 
+    public function addMovie(){
+        $dao = new DAO();
+    
+        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, p.picture, d.id_director
+                FROM person p INNER JOIN director d
+                ON p.id_person = d.person_id
+                ORDER BY director ";
 
     
+        $sql1 = "SELECT g.id_genre, g.genre_name
+                FROM genre g
+                ORDER BY g.genre_name";
+
+        $directors = $dao->executerRequete($sql);
+
+        $genres = $dao->executerRequete($sql1);
+        require "views/movie/movieForm.php";
+        
+    }
+
+    public function addActor(){
+        require "views/actor/actorForm.php";
+    }
+    public function addDirector(){
+    
+        require "views/director/directorForm.php";
+    }
 
 
 }
