@@ -39,18 +39,26 @@ class MovieController{
                         ON d.id_director = f.director_id
                         WHERE id_film = :id";
 
+
+        $sql3 = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
+        FROM person p INNER JOIN actor a
+        ON p.id_person = a.person_id
+        LIMIT 2";
+
         $params = [
             'id' => $id,
         ];
 
+    
         $film = $dao->executerRequete($sql, $params);
         // instancier une variable avec la requete 
         $dureeFilmObject = $dao->executerRequete($sqlDuree, $params);
-
+        
         $time = $this->durationMovie($dureeFilmObject);
-
+        
         $filmDirector = $dao->executerRequete($sql2, $params);
-
+        
+        $mainActors = $dao->executerRequete($sql3);
         
         require "views/movie/detailMovie.php"; 
         
@@ -109,6 +117,8 @@ class MovieController{
         }
 
     }
+
+
     
 
 

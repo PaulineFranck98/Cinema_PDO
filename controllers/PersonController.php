@@ -6,7 +6,7 @@ class PersonController{
     public function findAllActors(){
         $dao = new DAO();
 
-        $sql = "SELECT p.id_person, p.first_name, p.last_name
+        $sql = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
                 FROM person p INNER JOIN actor a
                 ON p.id_person = a.person_id";
         $actors = $dao->executerRequete($sql);
@@ -14,6 +14,7 @@ class PersonController{
         require "views/actor/listActors.php";
 
     }
+
 
     public function findActorById($id){
 
@@ -51,7 +52,7 @@ class PersonController{
     public function findAllDirectors(){
         $dao = new DAO();
 
-        $sql = "SELECT p.first_name, p.last_name
+        $sql = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, p.picture, d.id_director
                 FROM person p INNER JOIN director d
                 ON p.id_person = d.person_id";
         $directors = $dao->executerRequete($sql);

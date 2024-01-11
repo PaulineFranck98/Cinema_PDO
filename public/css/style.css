@@ -21,15 +21,19 @@ body {
 
 nav a {
   text-decoration: none;
-  color: white;
+  color: #bebebe;
   font-size: 1.2em;
+}
+
+nav a:hover{
+  color :white;
 }
 
 nav ul {
   display: flex;
   justify-content: center;
   gap: 70px;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 30px 0px;
   padding: 7px;
   border: 1px solid black;
   background-color: black;
@@ -40,11 +44,12 @@ h1 {
 }
 
 .genreh2 {
-  border-bottom: 1px solid rgba(101, 101, 101, 0.5);
-  padding-bottom: 10px;
+  border-bottom: 1px solid #494848a3;
+  padding-bottom: 14px;
 }
+
 .figure_films {
-  width: 30%;
+  width: 26%;
   text-align: center;
 }
 
@@ -69,7 +74,7 @@ h1 {
 .films-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: 50px;
   gap: 50px;
 }
@@ -78,7 +83,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: 34px 0px 80px 0px;
+  margin: 34px 0px 80px 24px;
   gap: 20px;
 }
 
@@ -88,14 +93,14 @@ h1 {
   height: 88%;
   margin-bottom: 8px;
   border-radius: 7px;
-  border: 1px solid rgb(49 49 49 / 33%);
-  box-shadow: rgb(81 73 70 / 25%) -1px 0px 18px 1px,
-    rgb(33 29 25 / 4%) 0px 0px 0px 1px;
+  border: 1px solid rgb(51 51 51 / 42%);
+  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px, rgb(255 227 201 / 4%) 1px 0px 0px 0px;
   transition: transform 0.3s ease-in-out;
 }
 
 .figure_films:hover img,
-.figure_films1:hover img {
+.figure_films1:hover img,
+.casting-figures:hover img {
   transform: scale(1.01);
 }
 
@@ -106,12 +111,14 @@ h1 {
   margin-bottom: 20px;
   margin-left: 63px;
   gap: 50px;
+
 }
+
 
 .detail-container {
   display: flex;
-  margin: 30px 0px 0px 100px;
-  width: 85%;
+  margin: 45px 0px 0px 160px;
+  width: 82%;
 }
 
 .detail-container figure {
@@ -123,8 +130,8 @@ h1 {
   width: 100%;
   /* height: 88%; */
   border-radius: 7px;
-  box-shadow: rgb(169 130 111 / 34%) -1px 0px 36px 1px,
-    rgb(255 227 201 / 4%) 0px 0px 0px 1px;
+  border: 1px solid rgb(51 51 51 / 42%);
+  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px, rgb(255 227 201 / 4%) 1px 0px 0px 0px;
 }
 
 .detail-aside {
@@ -134,10 +141,13 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+
 }
 .detail-aside p {
-  font-size: 0.9em;
+  font-size: 1.2em;
+  color: #e7e7e7;
 }
+
 .detail-aside figure {
   width: 20%;
   text-align: center;
@@ -145,6 +155,8 @@ h1 {
 
 .detail-aside figure img {
   width: 100%;
+  border: 1px solid rgb(51 51 51 / 42%);
+  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px, rgb(255 227 201 / 4%) 1px 0px 0px 0px;
   /* height: auto; */
 }
 
@@ -152,27 +164,44 @@ h1 {
   display: flex;
 }
 
-.h1_detail {
-  border-top: 1px solid rgba(169, 169, 169, 0.5);
+.aside-bottom{
+  display: flex;
+}
+
+.aside-bottom figure{
+  width : 20%;
+  text-align : center; 
+}
+
+.aside-bottom figure img {
+  width:100%;
+}
+
+h1{
+  /* border-top: 1px solid rgba(169, 169, 169, 0.5); */
   border-bottom: 1px solid rgba(169, 169, 169, 0.5);
-  padding: 10px;
+  padding: 13px;
   font-weight: lighter;
   width: 90%;
   margin: 0 auto;
+  
+}
+
+.h1-genre{
+  width: 100%;
 }
 
 .border {
   border: 1px solid rgba(69, 68, 68, 0.5);
-  width: 50%;
-  margin: 0 auto;
+  width: 35%;
 }
 
 .casting-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: end;
-  margin: 50px 0px 0px 100px;
+  margin: 40px 35px;
   gap: 50px;
 }
 
@@ -193,8 +222,7 @@ h1 {
   height: 360px;
   margin: 10px 0px 8px 0px;
   border-radius: 7px;
-  border: 1px solid rgba(75, 75, 75, 0.599);
-  box-shadow: rgb(169 130 111 / 34%) -1px 0px 36px 1px,
-    rgb(255 227 201 / 4%) 0px 0px 0px 1px;
+  border: 1px solid rgb(51 51 51 / 42%);
+  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px, rgb(255 227 201 / 4%) 1px 0px 0px 0px;
   transition: transform 0.3s ease-in-out;
 }

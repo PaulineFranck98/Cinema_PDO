@@ -4,7 +4,7 @@ ob_start();
 ?>
 
 
-<h1>Casting </h1>
+<h1>CASTING</h1>
 <div class="casting-grid">
     <?php
     while ($actor = $castingActors->fetch()) {

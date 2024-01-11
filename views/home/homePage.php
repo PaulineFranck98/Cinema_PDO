@@ -3,7 +3,7 @@
 ob_start();
 ?>
 
-<h1>3 derniers films : </h1>
+<h1>DERNIERS FILMS</h1>
 <div class="films-grid">
     <?php
     while ($film = $lastmovies->fetch()) {

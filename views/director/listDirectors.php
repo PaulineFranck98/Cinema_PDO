@@ -6,14 +6,22 @@ ob_start();
 
 
 <div>
-    <h1>Liste des réalisateurs</h1>
+    <h1>RÉALISATEURS</h1>
+<div class="casting-grid">
     <?php
-    while ($director= $directors->fetch()){ ?>
-    <div>
-        <p><strong><?=$director['first_name']?> <?=$director['last_name']?></strong></p>
-    </div>
-<?php }
-?>
+    while ($director = $directors->fetch()) {
+    ?>
+        <figure class="casting-figures">
+            <a href="index.php?action=directorDetail&id=<?=$director['id_director']?>">
+                <img src="./public/images/<?= $director['picture'] ?>" alt="picture of director : <?=$director['director']?>">
+            </a>
+            <figcaption>
+                <a href="#"><strong><?=$director['director']?></strong></a>
+            </figcaption>
+        </figure>
+    <?php
+    }
+    ?>
 </div>
 
 <?php

@@ -3,7 +3,7 @@
 ob_start();
 ?>
 
-<h1>Liste des films : <span><?= $films->rowCount() ?></span></h1>
+<h1>FILMS</h1>
 <div class="films-grid">
     <?php
     while ($film = $films->fetch()) {

@@ -5,7 +5,7 @@ ob_start();
 ?>
 
 <div>
-    <h1>Liste des genres</h1>
+    <h1 class="h1-genre">GENRES</h1>
 
     <?php
     $currentGenre = null;
@@ -13,8 +13,8 @@ ob_start();
         if ($currentGenre !== $genre['genre_name']) {
         ?>
 </div>
-<div>
-        <h2><?=$genre['genre_name']?></h2>
+<div style="margin-top:50px;">
+        <h2 class="genreh2"><?=$genre['genre_name']?></h2>
         <div class="films-grid1">
             <?php
                 $currentGenre = $genre['genre_name'];

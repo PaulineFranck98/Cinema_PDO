@@ -15,25 +15,46 @@ while ($movie = $film->fetch()) {
             </figcaption>
         </figure>
         <div class="detail-aside">
-            <p>Synopsis : <br><br> <?= $movie['synopsis'] ?></p>
-            <p class="border"></p>
-            <p>Durée du film : <?= $time ?></p>
-            <p class="border"></p>
-            <?php
-                while ($director = $filmDirector->fetch()) {
-                    ?>
-                    <p>Réalisé par : </p>
-                    <figure>
-                        <a href="index.php?action=directorDetail&id=<?= $director['id_director'] ?>">
-                            <img src="./public/images/<?= $director['picture'] ?>" alt="picture of film : <?= $director['director'] ?>">
-                        </a>
-                        <figcaption>
-                            <a href="index.php?action=directorDetail&id=<?= $director['id_director'] ?>"><strong><?= $director['director'] ?></strong></a>
-                        </figcaption>
-                    </figure>
+            <div>
+                <p><?= $movie['synopsis'] ?></p>
+                <p class="border"></p>
+                <p>Durée du film : <?= $time ?></p>
+                <p class="border"></p>
+            </div>
+            <div class='aside-bottom'>
                 <?php
-                 } 
-            ?>
+                    while ($director = $filmDirector->fetch()) {
+                        ?>
+                        <div>
+                            <p>Réalisé par : </p>
+                            <figure>
+                                <a href="index.php?action=directorDetail&id=<?= $director['id_director'] ?>">
+                                    <img src="./public/images/<?= $director['picture'] ?>" alt="picture of director : <?= $director['director'] ?>">
+                                </a>
+                                <figcaption>
+                                    <a href="index.php?action=directorDetail&id=<?= $director['id_director'] ?>"><strong><?= $director['director'] ?></strong></a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    <?php
+                    } 
+                    while ($actor = $mainActors->fetch()) {
+                        ?>
+                        <!-- <p>Acteurs principaux :</p> -->
+                        <div>
+                            <figure>
+                                <a href="index.php?action=actorDetail&id=<?= $actor['id_actor'] ?>">
+                                    <img src="./public/images/<?= $actor['picture'] ?>" alt="picture of actor : <?= $actor['actor'] ?>">
+                                </a>
+                                <figcaption>
+                                    <a href="index.php?action=actorDetail&id=<?= $actor['id_actor'] ?>"><strong><?= $actor['actor'] ?></strong></a>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    <?php   
+                    }
+                ?>
+            </div>
         </div>
 
     </div>
