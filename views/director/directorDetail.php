@@ -6,9 +6,12 @@ ob_start();
 <?php while ($director = $directorDetail->fetch()) { 
     ?>
     <h1 class="h1_detail"><?= mb_strtoupper($director['director']) ?></h1>
+
+    <a href="index.php?action=addUpdateDirectorForm&id=<?= $director['id_director'] ?>">Modifier</a>
+    
     <div class="detail-container">
         <figure>
-            <img src="./public/images/<?= $director['picture'] ?>" alt="picture of actor : <?= $director['director'] ?>">
+            <img src="./public/images/<?= $director['picture'] ?>" alt="picture of director : <?= $director['director'] ?>">
         </figure>
         <div class="detail-aside">
             <p>Date de naissance : <?= $director['birth_date'] ?></p>

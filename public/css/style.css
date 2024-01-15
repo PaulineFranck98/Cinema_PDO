@@ -10,8 +10,9 @@
   /* color: white; */
 }
 
+
 body {
-  background-color: black;
+  background-color: rgb(6,13,23);
   color: white;
 }
 
@@ -20,6 +21,15 @@ body {
   margin: 0 auto;
 }
 
+.logo{
+  height:67px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img{
+  height:100%;
+}
 a {
   color: white;
   text-decoration: none;
@@ -40,8 +50,6 @@ nav ul {
   gap: 70px;
   margin: 20px 0px 30px 0px;
   padding: 7px;
-  border: 1px solid black;
-  background-color: black;
 }
 
 h1 {
@@ -50,7 +58,8 @@ h1 {
 
 .genreh2 {
   border-bottom: 1px solid #494848a3;
-  padding-bottom: 14px;
+  padding-bottom: 12px;
+  font-weight: lighter;
 }
 
 .figure_films {
@@ -98,9 +107,8 @@ h1 {
   height: 88%;
   margin-bottom: 8px;
   border-radius: 7px;
-  border: 1px solid rgb(51 51 51 / 42%);
-  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px,
-    rgb(255 227 201 / 4%) 1px 0px 0px 0px;
+  border: 1px solid rgb(0 0 0);
+  box-shadow: rgb(0 0 0 / 32%) -1px 0px 19px 20px, rgb(0 0 0) 1px 0px 1px 0px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -134,9 +142,9 @@ h1 {
   width: 100%;
   /* height: 88%; */
   border-radius: 7px;
-  border: 1px solid rgb(51 51 51 / 42%);
-  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px,
-    rgb(255 227 201 / 4%) 1px 0px 0px 0px;
+  border: 1px solid rgb(0 0 0);
+  box-shadow: rgb(0 0 0 / 32%) -1px 0px 19px 20px, rgb(0 0 0) 1px 0px 1px 0px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .detail-aside {
@@ -159,9 +167,9 @@ h1 {
 
 .detail-aside figure img {
   width: 100%;
-  border: 1px solid rgb(51 51 51 / 42%);
-  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px,
-    rgb(255 227 201 / 4%) 1px 0px 0px 0px;
+  border: 1px solid rgb(0 0 0);
+  box-shadow: rgb(0 0 0 / 32%) -1px 0px 19px 20px, rgb(0 0 0) 1px 0px 1px 0px;
+  transition: transform 0.3s ease-in-out;
   /* height: auto; */
 }
 
@@ -226,9 +234,8 @@ h1 {
   height: 360px;
   margin: 10px 0px 8px 0px;
   border-radius: 7px;
-  border: 1px solid rgb(51 51 51 / 42%);
-  box-shadow: rgb(169 169 173 / 27%) -1px 0px 10px 0px,
-    rgb(255 227 201 / 4%) 1px 0px 0px 0px;
+  border: 1px solid rgb(0 0 0);
+  box-shadow: rgb(0 0 0 / 32%) -1px 0px 19px 20px, rgb(0 0 0) 1px 0px 1px 0px;
   transition: transform 0.3s ease-in-out;
 }
 

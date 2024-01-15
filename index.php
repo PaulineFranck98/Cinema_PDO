@@ -4,6 +4,7 @@
     require_once "controllers/PersonController.php";
     require_once "controllers/MovieController.php";
     require_once "controllers/GenreController.php";
+    require_once "controllers/RoleController.php";
     // require_once "controllers/GenreController.php";
     // require_once "controllers/RoleController.php";
 
@@ -12,6 +13,7 @@
     $personCtrl = new PersonController();
     $movieCtrl = new MovieController();
     $genreCtrl = new GenreController();
+    $roleCtrl = new RoleController();
  
     // index.php va intercepter la requête HTTP et va orienter vers le bon controller et la bonne méthode 
     //  ex : index.php?action=listFilms
@@ -46,12 +48,29 @@
             break;
             case "addMovie" : $movieCtrl->addMovie();
             break;
-            case "addActorForm" : $personCtrl->addActorForm();
+            case "addUpdateActorForm" : $personCtrl->addUpdateActorForm();
             break;
-            case "addActor" : $personCtrl->addActor();
+            case "addUpdateActor" : $personCtrl->addUpdateActor();
             break;
-            case "directorForm" : $movieCtrl->showDirectorForm();
+            case "addUpdateDirectorForm" : $personCtrl->addUpdateDirectorForm();
             break;
+            case "addUpdateDirector" : $personCtrl->addUpdateDirector();
+            break;
+            case "addUpdateGenreForm" : $genreCtrl->addUpdateGenreForm();
+            break;
+            case "addUpdateGenre" : $genreCtrl->addUpdateGenre();
+            break;
+            case "deleteGenre" : $genreCtrl->deleteGenre();
+            break;
+            case "detailGenre" : $genreCtrl->findGenreByID($id);
+            break;
+            case "addUpdateRoleForm" : $roleCtrl->addUpdateRoleForm();
+            break;
+            case "addUpdateRole" : $roleCtrl->addUpdateRole();
+            break;
+            case "deleteRole" : $roleCtrl->deleteRole();
+            break;
+            
             
 
 

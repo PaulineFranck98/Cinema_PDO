@@ -7,7 +7,10 @@ ob_start();
 
 <div>
     <h1>ACTEURS</h1>
+    <a href="index.php?action=addUpdateActorForm">Ajouter un Acteur</a>
 <div class="casting-grid">
+    
+
     <?php
     while ($actor = $actors->fetch()) {
     ?>

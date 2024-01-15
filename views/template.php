@@ -12,6 +12,9 @@
 <body>
     <div id="container">
         <header>
+            <figure class="logo">
+                <img src="public/images/popcorn1.jpg" alt="logo popcorn">
+            </figure>
             <nav>
                 <ul>
                     <li><a href='index.php?action=homePage'>Accueil</a></li>
@@ -20,8 +23,11 @@
                     <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
                     <li><a href='index.php?action=listGenres'>Genres</a></li>
                     <li><a href='index.php?action=movieForm'>Ajouter film</a></li>
-                    <li><a href='index.php?action=addActorForm'>Ajouter acteur</a></li>
-                    <li><a href='index.php?action=directorForm'>Ajouter réalisateur</a></li>
+                    <li><a href='index.php?action=addUpdateActorForm'>Ajouter acteur</a></li>
+                    <li><a href='index.php?action=addUpdateDirectorForm'>Ajouter réalisateur</a></li>
+                    <li><a href='index.php?action=addUpdateGenreForm'>Ajouter genre</a></li>
+                    <li><a href='index.php?action=addUpdateRoleForm'>Ajouter role</a></li>
+
                 </ul>
             </nav>
         </header>

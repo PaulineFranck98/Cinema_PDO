@@ -1,7 +1,7 @@
 <?php
 
 class HomeController{
-    // normalement appelée 'index'
+    
     public function homePage(){
         
         $dao = new DAO();
