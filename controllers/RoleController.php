@@ -7,7 +7,7 @@ class RoleController{
         $role = [];
         if (isset($_GET['id'])){
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-            if ($id !==false){
+            if ($id ){
                 $dao = new DAO();
                 $sql = "SELECT * 
                         FROM role 
@@ -23,7 +23,7 @@ class RoleController{
     public function addUpdateRole(){
 
         if(isset($_POST['submit'])){
-            //assainissement et validations des données du formulaire  
+            //assainissement et validation des données du formulaire  
             $id_role = filter_input(INPUT_POST, 'id_role', FILTER_VALIDATE_INT);
             $role_name = filter_input(INPUT_POST, 'role_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -31,7 +31,7 @@ class RoleController{
             // Enregistrement du genre en base de données
             $dao = new DAO();
             
-            if ($id_role !== false) {
+            if ($id_role) {
                 // Mise à jour
                 $sql = "UPDATE role SET role_name = :role_name WHERE id_role = :id_role";
                 $params = [':role_name' => $role_name, ':id_role' => $id_role];
@@ -55,7 +55,7 @@ class RoleController{
 
             $id_role = filter_input(INPUT_POST, 'id_role', FILTER_VALIDATE_INT);
 
-            if ($id_role !== false) {
+            if ($id_role) {
 
                 $dao = new DAO();
 

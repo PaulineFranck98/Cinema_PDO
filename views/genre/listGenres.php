@@ -11,6 +11,7 @@ ob_start();
     $currentGenre = null;
     while ($genre = $genres->fetch()) {
         if ($currentGenre !== $genre['genre_name']) {
+            // var_dump($genre);
         ?>
 </div>
 <div style="margin-top:50px;">

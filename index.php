@@ -48,9 +48,11 @@
             break;
             case "addMovie" : $movieCtrl->addMovie();
             break;
-            case "addUpdateActorForm" : $personCtrl->addUpdateActorForm();
+            case "updateActorForm" : $personCtrl->updateActorForm($id);
             break;
-            case "addUpdateActor" : $personCtrl->addUpdateActor();
+            case "updateActor" : $personCtrl->updateActor($id);
+            break;
+            case "addActor" : $personCtrl->addActor();
             break;
             case "addUpdateDirectorForm" : $personCtrl->addUpdateDirectorForm();
             break;

@@ -98,6 +98,134 @@ class PersonController{
         require "views/director/directorDetail.php";
     }
 
+
+
+
+    public function updateActorForm($id)
+    {
+
+        //on cherche l'acteur en fonction de son id en bdd et inner join person
+        // fecth et on renvoie actor sur la vue
+        $dao = new DAO();
+
+        $sqlActorDao = 'SELECT * FROM actor a INNER JOIN person p on p.id_person = a.person_id WHERE id_actor = :id';
+
+        $param = [':id'=>$id];
+
+        $sqlActor =  $dao->executerRequete($sqlActorDao, $param);
+        $actor = $sqlActor->fetch();
+
+        require "views/actor/updateActorForm.php";
+    }
+
+
+    public function updateActor($id)
+    {
+        if($id == ''){
+            echo 'vide';
+        }
+        
+        $dao = new DAO();
+
+        $sqlActorDao = 'SELECT * FROM actor a INNER JOIN person p on p.id_person = a.person_id WHERE id_actor = :id';
+
+        $param = [':id'=>$id];
+
+        $sqlActor =  $dao->executerRequete($sqlActorDao, $param);
+        $actor = $sqlActor->fetch();
+
+        if(isset($_POST['submit'])){
+            
+            $id_person = $actor['person_id'];
+            $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $person_gender = filter_input(INPUT_POST, 'person_gender', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+            $picture = $actor['picture'];
+
+            // var_dump($id, $first_name, $last_name, $person_gender, $id_person, $picture); die;
+            if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
+                // Define allowed file extensions
+                $allowed = [
+                    "jpg" => "image/jpg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png",
+                ];
+                // Extract file details
+                $filename = $_FILES['picture']['name'];
+                
+                $filetype = $_FILES['picture']['type'];
+                
+                $filesize = $_FILES['picture']['size'];
+                
+                // Get file extension and generate a unique file name using md5
+                $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+                $picture= md5($filename). ".". $extension;
+        
+                // Check for allowed file extensions and size limit
+                if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée");
+                
+                $maxsize = 2 * 1024 * 1024;
+
+                if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde");
+
+                // Check MIME type and proceed with file upload 
+                if(in_array($filetype, $allowed)){
+
+                    //check if file exists
+                    if (file_exists("public/images/" . $picture)) {
+
+                        echo $_FILES['picture']['name']. " existe déjà";
+
+                    }else {
+                        
+                        move_uploaded_file($_FILES['picture']['tmp_name'], "public/images/". $picture);
+                        
+
+                        echo "Votre fichier a été téléchargé avec succès!";
+                    }
+                }else {
+                    echo "Erreur : problème de téléchargement du fichier";
+                }
+            }else {
+                
+                echo "Erreur : " . $_FILES['picture']['error'];
+
+            }   
+
+            $sqlPerson = "UPDATE person
+            SET first_name = :first_name, 
+                last_name = :last_name, 
+                person_gender = :person_gender, 
+                picture = :picture 
+                WHERE id_person = :id_person";
+
+            // $paramsPerson[':id_person'] = $id_person;
+            $paramsPerson = [
+                ':first_name'=> $first_name, 
+                ':last_name'=> $last_name, 
+                ':person_gender'=> $person_gender, 
+                ':picture'=> $picture,
+                ':id_person'=>$id_person
+            ];
+
+
+            $result= $dao->executerRequete($sqlPerson, $paramsPerson);
+            // var_dump($result); die();
+            header("Location: index.php?action=homePage");
+            exit();
+
+        }
+    }
+
+
+
+
+
+
+
+
     public function addUpdateActorForm(){
         // Initialize an array to store actor data
         $actor = [];
@@ -109,7 +237,7 @@ class PersonController{
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
              
             // If a valid ID is provided
-            if ($id !== false) {
+            if ($id) {
 
                 $dao = new DAO();
 
@@ -119,7 +247,9 @@ class PersonController{
                               WHERE a.id_actor = :id";
 
                  // Parameters for the SQL query
-                $params = [':id'=>$id];
+                $params = [
+                    ':id'=>$id
+                ];
                 // Execute the query
                 $resultPerson = $dao->executerRequete($sqlPerson, $params);
 
@@ -143,18 +273,29 @@ class PersonController{
     }
     
     
-    public function addUpdateActor(){
+    public function addUpdateActor($id){
+        $dao = new DAO();
+
+        $sqlActorDao = 'SELECT * FROM actor a INNER JOIN person p on p.id_person = a.person_id WHERE id_actor = :id';
+
+        $param = [':id'=>$id];
+
+        $sqlActor =  $dao->executerRequete($sqlActorDao, $param);
+        $actor = $sqlActor->fetch();
+
+        // var_dump($id,$actor);die;
 
         // Check if the form has been submitted
         if(isset($_POST['submit'])){
             
             // Retrieve and sanitize input data from the form
+            $id_actor = filter_input(INPUT_GET,'id_actor', FILTER_VALIDATE_INT);
             $id_person = filter_input(INPUT_POST,'id_person', FILTER_VALIDATE_INT);
-            $id_actor = filter_input(INPUT_POST,'id_actor', FILTER_VALIDATE_INT);
             $first_name = filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $last_name = filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $person_gender = filter_input(INPUT_POST, 'person_gender', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
+            $picture = $actor['picture'];
         
     
             if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
@@ -207,10 +348,9 @@ class PersonController{
 
             }   
     
-            $dao = new DAO();
     
-     
-            if($id_person !== false){
+            // var_dump($id_person);die;
+            if($id_person){
                 // update person
                 $sqlPerson = "UPDATE person 
                               SET first_name = :first_name, 
@@ -248,12 +388,15 @@ class PersonController{
                 $dao->executerRequete($sqlPerson, $paramsPerson);
 
                 $id_person = $dao->getLastInsertId();
+                // var_dump($id_person);die;
             }   
-                // check if actor exists or insert new actor
-            if ($id_actor !== false) {
+            // check if actor exists or insert new actor
+            // var_dump($id_actor);die;
+            if ($id_actor) {
                     // actor already exists, no need to update the actor table
                  
             } else {
+
                     // insert into actor
                     $sqlInsertActor = "INSERT INTO actor (person_id) 
                                        VALUES (:id_person)";
@@ -287,7 +430,7 @@ class PersonController{
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
             
             // If a valid ID is provided
-            if ($id !== false) {
+            if ($id) {
 
                 $dao = new DAO();
 
@@ -390,7 +533,7 @@ class PersonController{
             $dao = new DAO();
     
      
-            if($id_person !== false){
+            if($id_person){
                 // update person
                 $sqlPerson = "UPDATE person 
                               SET first_name = :first_name, 
@@ -430,7 +573,7 @@ class PersonController{
                 $id_person = $dao->getLastInsertId();
             }   
                 // check if director exists or insert new director
-            if ($id_director !== false) {
+            if ($id_director) {
                     // director already exists, no need to update the director table
                  
             } else {

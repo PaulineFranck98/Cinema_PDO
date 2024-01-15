@@ -7,7 +7,7 @@ ob_start();
     ?>
     <h1 class="h1_detail"><?= mb_strtoupper($actor['actor']) ?></h1>
 
-    <a href="index.php?action=addUpdateActorForm&id=<?= $actor['id_actor'] ?>">Modifier</a>
+    <a href="index.php?action=updateActorForm&id=<?= $actor['id_actor'] ?>">Modifier</a>
 
     <div class="detail-container">
         <figure>

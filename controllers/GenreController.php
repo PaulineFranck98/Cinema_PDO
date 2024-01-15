@@ -50,7 +50,7 @@ class GenreController{
         $genre = [];
         if (isset($_GET['id'])){
             $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-            if ($id !==false){
+            if ($id){
                 $dao = new DAO();
                 $sql = "SELECT * 
                         FROM genre 
@@ -66,16 +66,16 @@ class GenreController{
     public function addUpdateGenre(){
 
         if(isset($_POST['submit'])){
-            //assainissement et validations des données du formulaire  
+            //assainissement et validation des données du formulaire  
             $id_genre = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
             $genre_name = filter_input(INPUT_POST, 'genre_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Validation des données (ajoutez vos propres validations)
+          
 
-            // Enregistrement du genre en base de données
+            
             $dao = new DAO();
             
-            if ($id_genre !== false) {
+            if ($id_genre) {
                 // Mise à jour
                 $sql = "UPDATE genre SET genre_name = :genre_name WHERE id_genre = :id_genre";
                 $params = [':genre_name' => $genre_name, ':id_genre' => $id_genre];
@@ -99,7 +99,7 @@ class GenreController{
 
             $id_genre = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
 
-            if ($id_genre !== false) {
+            if ($id_genre) {
 
                 $dao = new DAO();
 
