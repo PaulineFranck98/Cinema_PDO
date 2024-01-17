@@ -7,8 +7,8 @@ class GenreController{
 
         $sql = "SELECT g.genre_name, g.id_genre, f.title, f.id_film, f.picture
         FROM genre g
-        LEFT JOIN film_genre fg ON fg.genre_id = g.id_genre
-        LEFT JOIN film f ON fg.film_id = f.id_film
+        INNER JOIN film_genre fg ON fg.genre_id = g.id_genre
+        INNER JOIN film f ON fg.film_id = f.id_film
         ORDER BY g.genre_name, f.title";
         
                 

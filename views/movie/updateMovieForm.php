@@ -4,14 +4,14 @@
 ob_start();
 ?>
 
-<h1>AJOUTER UN FILM</h1>
+<h1>MODIFIER UN FILM</h1>
 <div>
-    <form action="index.php?action=addMovie" method="post" enctype="multipart/form-data" class="movieForm">
+    <form action="index.php?action=updateMovie&id=<?=['id_film']?>" method="post" enctype="multipart/form-data" class="movieForm">
         
         <div>
         
             <label>Titre</label>
-            <input type="text" name="title"> 
+            <input type="text" name="title" value="<?=isset($film['title'])? $film['title'] : '';?>"> 
 
         </div>
 
@@ -25,21 +25,21 @@ ob_start();
         <div>
 
             <label>Durée (en minutes)</label>
-            <input type="number" min="0" step="any" name="duration"> 
+            <input type="number" min="0" step="any" name="duration" value="<?=isset($film['duration'])? $film['duration'] : '';?>"> 
 
         </div>  
 
         <div>
 
             <label>Synopsis </label>
-            <input type="text" name="synopsis"> 
+            <input type="text" name="synopsis" value="<?=isset($film['synopsis'])? $film['synopsis'] : '';?>"> 
 
         </div> 
 
         <div>
 
             <label>Date de sortie </label>
-            <input type="date" name="release_date"> 
+            <input type="date" name="release_date" value="<?=isset($film['release_date'])? $film['release_date'] : '';?>"> 
 
         </div>
 
@@ -67,7 +67,7 @@ ob_start();
             ?>
         </div> 
         <div>     
-            <input type="submit" name="submit" value="Ajouter le film">
+            <input type="submit" name="submit" value="Modifier le film">
         </div>    
     </form>
 </div>

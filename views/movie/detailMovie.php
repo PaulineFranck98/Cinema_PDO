@@ -20,6 +20,7 @@ while ($movie = $film->fetch()) {
                 <p class="border"></p>
                 <p>Durée du film : <?= $time ?></p>
                 <p class="border"></p>
+                <p>Date de sortie : <?=$movie['date']?></p>
             </div>
             <div class='aside-bottom'>
                 <?php

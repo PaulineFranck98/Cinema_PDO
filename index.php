@@ -44,7 +44,7 @@
             break;
             case "directorDetail" : $personCtrl->findDirectorById($id);
             break;
-            case "movieForm" : $movieCtrl->showMovieForm();
+            case "addMovieForm" : $movieCtrl->addMovieForm();
             break;
             case "addMovie" : $movieCtrl->addMovie();
             break;

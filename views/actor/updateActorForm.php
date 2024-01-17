@@ -2,28 +2,11 @@
 
 ob_start();
 
-// Check if an ID is provided in the URL (for updating)
-// if (isset($_GET['id'])) {
-
-// //     $title = 'MODIFIER L\'ACTEUR';
-//     $action = "index.php?action=updateActor&id=".$actor['actor']['id_actor'];
-
-// } else {
-
-//     $title = 'AJOUTER UN ACTEUR';
-//     $action = "index.php?action=addUpdateActor";
-// }
-
 ?>
 
-
-
-
+<h1>MODIFIER L'ACTEUR</h1>
 <div>
-    <?php
-
-    // var_dump($actor);
-    ?>
+   
     <form action="index.php?action=updateActor&id=<?=$actor['id_actor']?>" method="post" enctype="multipart/form-data" class="movieForm">
 
         <div>

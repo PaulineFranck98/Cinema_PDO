@@ -4,6 +4,7 @@ ob_start();
 
 ?>
 
+<h1>AJOUTER UN ACTEUR</h1>
 <div>
     
     <form action="index.php?action=addActor" method="post" enctype="multipart/form-data" class="movieForm">
