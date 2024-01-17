@@ -23,10 +23,11 @@
                     <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
                     <li><a href='index.php?action=listGenres'>Genres</a></li>
                     <li><a href='index.php?action=movieForm'>Ajouter film</a></li>
-                    <li><a href='index.php?action=addUpdateActorForm'>Ajouter acteur</a></li>
-                    <li><a href='index.php?action=addUpdateDirectorForm'>Ajouter réalisateur</a></li>
-                    <li><a href='index.php?action=addUpdateGenreForm'>Ajouter genre</a></li>
-                    <li><a href='index.php?action=addUpdateRoleForm'>Ajouter role</a></li>
+                    <li><a href='index.php?action=addActorForm'>Ajouter acteur</a></li>
+                    <li><a href='index.php?action=addDirectorForm'>Ajouter réalisateur</a></li>
+                    <li><a href='index.php?action=addGenreForm'>Ajouter genre</a></li>
+                    <li><a href='index.php?action=addRoleForm'>Ajouter role</a></li>
+                    <li><a href='index.php?action=listRoles'>Rôles</a></li>
 
                 </ul>
             </nav>

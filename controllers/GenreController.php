@@ -9,9 +9,7 @@ class GenreController{
         FROM genre g
         LEFT JOIN film_genre fg ON fg.genre_id = g.id_genre
         LEFT JOIN film f ON fg.film_id = f.id_film
-        ORDER BY g.genre_name, f.title;
-        
-        ";
+        ORDER BY g.genre_name, f.title";
         
                 
         $genres = $dao->executerRequete($sql);
@@ -25,12 +23,12 @@ class GenreController{
         $sql = "SELECT g.genre_name, g.id_genre
                 FROM genre g
                 WHERE g.id_genre = :id";
-    ;
+    
     
         $sql1 ="SELECT g.genre_name, f.title, f.id_film, f.picture
                 FROM genre g
-                LEFT JOIN film_genre fg ON fg.genre_id = g.id_genre
-                LEFT JOIN film f ON fg.film_id = f.id_film
+                INNER JOIN film_genre fg ON fg.genre_id = g.id_genre
+                INNER JOIN film f ON fg.film_id = f.id_film
                 WHERE g.id_genre = :id";
 
         $params = [
@@ -44,48 +42,84 @@ class GenreController{
         require "views/genre/detailGenre.php";
     }
     
-
-    public function addUpdateGenreForm(){
-
-        $genre = [];
-        if (isset($_GET['id'])){
-            $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-            if ($id){
-                $dao = new DAO();
-                $sql = "SELECT * 
-                        FROM genre 
-                        WHERE id_genre = :id";
-                $params = [':id' =>$id];
-                $result = $dao->executerRequete($sql,$params);
-                $genre = $result->fetch(PDO::FETCH_ASSOC);
-            }
-        }
-        require "views/genre/addUpdateGenreForm.php";
+    public function addGenreForm(){
+        
+        require "views/genre/addGenreForm.php";   
     }
 
-    public function addUpdateGenre(){
+    public function addGenre(){
+
+        $dao = new DAO();
 
         if(isset($_POST['submit'])){
-            //assainissement et validation des données du formulaire  
+
+            //sanitation and validation of form data  
             $id_genre = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
+
             $genre_name = filter_input(INPUT_POST, 'genre_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-          
+            
+            $sql = "INSERT INTO genre (genre_name) VALUES (:genre_name)";
+
+
+            $param = [
+                ':genre_name' => $genre_name 
+            ];
+         
+
+            $dao->executerRequete($sql, $param);
+
+            header("Location: index.php?action=listGenres");
+            exit();
+        }
+    }
+
+
+    public function updateGenreForm($id){
+    
+        $dao = new DAO();
+        
+        $sqlGenreDao = "SELECT * FROM genre WHERE id_genre = :id";
+
+        $params = [':id' =>$id];
+
+        $sqlGenre = $dao->executerRequete($sqlGenreDao,$params);
+        
+        $genre = $sqlGenre->fetch();
+    
+        
+        require "views/genre/updateGenreForm.php";
+    }
+
+    public function updateGenre($id){
+
+        $dao = new DAO();
+
+        $sqlGenreDao = "SELECT * FROM genre WHERE id_genre = :id";
+
+        $params = [':id' =>$id];
+
+        $sqlGenre = $dao->executerRequete($sqlGenreDao,$params);
+        
+        $genre = $sqlGenre->fetch();
+
+        if(isset($_POST['submit'])){
+
+            //sanitation and validation of form data  
+            $id_genre = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
+
+            $genre_name = filter_input(INPUT_POST, 'genre_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             
-            $dao = new DAO();
-            
-            if ($id_genre) {
-                // Mise à jour
-                $sql = "UPDATE genre SET genre_name = :genre_name WHERE id_genre = :id_genre";
-                $params = [':genre_name' => $genre_name, ':id_genre' => $id_genre];
-            } else {
-                // Ajout
-                $sql = "INSERT INTO genre (genre_name) VALUES (:genre_name)";
-                $params = [':genre_name' => $genre_name];
-            }
+            $sql = "UPDATE genre SET genre_name = :genre_name WHERE id_genre = :id_genre";
 
-            $dao->executerRequete($sql, $params);
+            $param = [
+                ':genre_name' => $genre_name,
+                ':id_genre' => $id_genre
+            ];
+         
+
+            $dao->executerRequete($sql, $param);
 
             header("Location: index.php?action=listGenres");
             exit();
@@ -117,4 +151,10 @@ class GenreController{
         }
     }
 
-}
+}  
+
+// } else {
+//     // Ajout
+//     $sql = "INSERT INTO genre (genre_name) VALUES (:genre_name)";
+//     $params = [':genre_name' => $genre_name];
+// }

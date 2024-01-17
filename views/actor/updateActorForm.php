@@ -22,16 +22,10 @@ ob_start();
 <div>
     <?php
 
-    // while ($person = $resultPerson->fetch()) {
-    //     var_dump($person);
-    //     # code...
-    // }
-    var_dump($actor);
+    // var_dump($actor);
     ?>
     <form action="index.php?action=updateActor&id=<?=$actor['id_actor']?>" method="post" enctype="multipart/form-data" class="movieForm">
 
-        
-        
         <div>
             <label for="fileUpload">Photo</label> 
             <input type="file" name="picture" id="fileUpload">

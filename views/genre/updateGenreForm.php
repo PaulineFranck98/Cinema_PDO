@@ -1,21 +1,11 @@
 <?php
 
 ob_start();
-
-// Check if an ID is provided in the URL (for updating)
-if (isset($_GET['id'])) {
-
-    $title = 'MODIFIER LE GENRE'; 
-
-} else {
-
-    $title = 'AJOUTER UN GENRE'; 
-}
 ?>
 
-<h1><?=$title?></h1>
+<h1>Modifier un genre</h1>
 
-<form action="index.php?action=addUpdateGenre" method="post">
+<form action="index.php?action=updateGenre" method="post">
 
 <input type="hidden" name="id_genre" value="<?= isset($genre['id_genre']) ? $genre['id_genre'] : ''; ?>">
 
@@ -28,6 +18,6 @@ if (isset($_GET['id'])) {
 
 <?php
 
-$title = "Ajouter/Modifier un Genre";
+$title = "Modifier un Genre";
 $content = ob_get_clean();
 require "views/template.php";

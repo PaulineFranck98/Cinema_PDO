@@ -7,7 +7,7 @@ ob_start();
     ?>
     <h1 class="h1_detail"><?= mb_strtoupper($director['director']) ?></h1>
 
-    <a href="index.php?action=addUpdateDirectorForm&id=<?= $director['id_director'] ?>">Modifier</a>
+    <a href="index.php?action=updateDirectorForm&id=<?= $director['id_director'] ?>">Modifier</a>
     
     <div class="detail-container">
         <figure>

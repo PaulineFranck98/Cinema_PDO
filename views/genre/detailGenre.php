@@ -8,7 +8,7 @@ ob_start();
     <div class="films-grid1">
         <?php while ($genre = $genreDetail->fetch()) : ?>
             
-            <a href="index.php?action=addUpdateGenreForm&id=<?= $genre['id_genre'] ?>">Modifier</a>
+            <a href="index.php?action=updateGenreForm&id=<?= $genre['id_genre'] ?>">Modifier</a>
             
             <form action="index.php?action=deleteGenre" method="post">
                 <input type="hidden" name="id_genre" value="<?= $genre['id_genre'] ?>">

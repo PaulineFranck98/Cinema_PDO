@@ -7,7 +7,7 @@ ob_start();
 
 <div>
     <h1>ACTEURS</h1>
-    <a href="index.php?action=addUpdateActorForm">Ajouter un Acteur</a>
+    <a href="index.php?action=addActorForm">Ajouter un Acteur</a>
 <div class="casting-grid">
     
 
@@ -19,7 +19,7 @@ ob_start();
                 <img src="./public/images/<?= $actor['picture'] ?>" alt="picture of actor : <?=$actor['actor']?>">
             </a>
             <figcaption>
-                <a href="#"><strong><?=$actor['actor']?></strong></a>
+                <a href="index.php?action=actorDetail&id=<?=$actor['id_actor']?>"><strong><?=$actor['actor']?></strong></a>
             </figcaption>
         </figure>
     <?php

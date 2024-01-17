@@ -7,6 +7,7 @@ ob_start();
 
 <div>
     <h1>RÉALISATEURS</h1>
+    <a href="index.php?action=addDirectorForm">Ajouter un réalisateur</a>
 <div class="casting-grid">
     <?php
     while ($director = $directors->fetch()) {

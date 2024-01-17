@@ -6,7 +6,7 @@ ob_start();
 
 <div>
     <h1 class="h1-genre">GENRES</h1>
-    <a href="index.php?action=addUpdateGenreForm">Ajouter un Genre</a>
+    <a href="index.php?action=addGenreForm">Ajouter un Genre</a>
     <?php
     $currentGenre = null;
     while ($genre = $genres->fetch()) {

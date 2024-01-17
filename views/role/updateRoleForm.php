@@ -2,23 +2,12 @@
 
 ob_start();
 
-// Check if an ID is provided in the URL (for updating)
-if (isset($_GET['id'])) {
-
-    $title = 'MODIFIER LE RÔLE'; 
-
-} else {
-
-    $title = 'AJOUTER UN ROLE';
-
-}
-
 ?>
 
 
-<h1><?=$title ?></h1>
+<h1>Modifier un rôle</h1>
 
-<form action="index.php?action=addUpdateRole" method="post">
+<form action="index.php?action=updateRole" method="post">
 
     <input type="hidden" name="id_role" value="<?= isset($role['id_role']) ? $role['id_role'] : ''; ?>">
 
@@ -32,6 +21,6 @@ if (isset($_GET['id'])) {
 
 <?php
 
-$title = "Ajouter/Modifier un role";
+$title = "Modifier un role";
 $content = ob_get_clean();
 require "views/template.php";
