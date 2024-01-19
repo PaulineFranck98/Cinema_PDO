@@ -7,11 +7,19 @@ ob_start();
 while ($movie = $film->fetch()) { 
     ?>
     <h1 class="h1_detail"><?= mb_strtoupper($movie['title']) ?></h1>
+    <a href="index.php?action=updateMovieForm&id=<?= $movie['id_film'] ?>">Modifier</a>
+
+    <form action="index.php?action=deleteMovie" method="post">
+        <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">
+        <input type="submit" name="submit" value="Delete Movie">
+
+    </form>
     <div class="detail-container">
         <figure>
             <img src="./public/images/<?= $movie['picture'] ?>" alt="picture of film : <?= $movie['title'] ?>">
             <figcaption>
                 <a href="index.php?action=casting&id=<?=$movie['id_film']?>">Afficher le casting</a>
+                
             </figcaption>
         </figure>
         <div class="detail-aside">

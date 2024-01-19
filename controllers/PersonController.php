@@ -215,6 +215,29 @@ class PersonController{
 
         }
     }
+
+    public function deleteActor() {
+
+        if (isset($_POST['submit'])) {
+            $id_actor = filter_input(INPUT_POST, 'id_actor', FILTER_VALIDATE_INT);
+    
+            if ($id_actor) {
+                $dao = new DAO();
+    
+                // Delete the actor record from the actor table
+                $sqlDeleteActor = "DELETE FROM actor WHERE id_actor = :id_actor";
+                $paramsDeleteActor = [':id_actor' => $id_actor];
+                $dao->executerRequete($sqlDeleteActor, $paramsDeleteActor);
+    
+                // Redirect to the actor list page or any other desired location
+                header("Location: index.php?action=listActors");
+                exit();
+            }
+        }
+    }
+
+    
+    
     public function updateDirectorForm($id)
     {
 

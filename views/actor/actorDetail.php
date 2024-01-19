@@ -8,6 +8,12 @@ ob_start();
     <h1 class="h1_detail"><?= mb_strtoupper($actor['actor']) ?></h1>
 
     <a href="index.php?action=updateActorForm&id=<?= $actor['id_actor'] ?>">Modifier</a>
+    
+    <form action="index.php?action=deleteActor" method="post">
+        <input type="hidden" name="id_actor" value="<?= $actor['id_actor'] ?>">
+        <input type="submit" name="submit" value="Delete Actor">
+    </form>
+
 
     <div class="detail-container">
         <figure>

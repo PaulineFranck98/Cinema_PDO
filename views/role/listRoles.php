@@ -15,6 +15,13 @@ ob_start();
             while ($role = $roles->fetch()) {
                 ?>  
                 <li><?=$role['role_name']?> <a href="index.php?action=updateRoleForm&id=<?=$role['id_role']?>">Modifier le rôle</a></li>
+                
+                <form action="index.php?action=deleteRole" method="post">
+                    
+                    <input type="hidden" name="id_role" value="<?= $role['id_role'] ?>">
+                    <input type="submit" name="submit" value="Supprimer le role">
+                </form>
+
                 <?php
     
              }

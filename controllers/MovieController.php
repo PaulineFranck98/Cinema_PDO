@@ -88,6 +88,58 @@ class MovieController{
 
     }
 
+    public function addCastingForm(){
+
+        $dao = new DAO();
+        // SQL query to select actor details
+        $sqlActors = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
+                FROM person p INNER JOIN actor a
+                ON p.id_person = a.person_id";
+        // execute SQL query 
+        $actors = $dao->executerRequete($sqlActors);
+
+        $sqlRoles = "SELECT * FROM role r
+        ORDER BY r.role_name";
+        $roles = $dao->executerRequete($sqlRoles);
+        
+        require "views/movie/addCastingForm.php";
+    }
+    
+
+   
+    public function addCasting($id){
+
+        $dao = new DAO();
+    
+        if (isset($_POST['submit'])) {
+            // Retrieve data from the form submission
+            $actor_id = filter_input(INPUT_POST, 'actor_id', FILTER_VALIDATE_INT);
+            $role_id = filter_input(INPUT_POST, 'role_id', FILTER_VALIDATE_INT);
+            $film_id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT); // Retrieve film_id
+    
+            // Insert casting information into the casting table
+            $sqlCasting = "INSERT INTO casting (film_id, actor_id, role_id) 
+                           VALUES (:film_id, :actor_id, :role_id)";
+            
+            $paramsCasting = [
+                ':film_id' => $id,
+                ':actor_id' => $actor_id,
+                ':role_id' => $role_id,
+            ];
+    
+            $dao->executerRequete($sqlCasting, $paramsCasting);
+    
+            // Redirect back to the movie's casting page or wherever you prefer
+            header("Location: index.php?action=showCasting&id=" . $film_id);
+            exit();
+        }
+    
+      
+    }
+    
+
+    
+
     
     public function durationMovie($dureeFilmObject)
     {
@@ -212,24 +264,23 @@ class MovieController{
             $sqlMovie = "INSERT INTO film (title,duration,synopsis,release_date,director_id, picture)
                         VALUES (:title,:duration,:synopsis,:release_date,:director_id, :picture)";
 
-$paramsMovie = [
-    ':title' => $title,
-    ':duration' => $duration,
-    ':synopsis' => $synopsis,
-    ':release_date' => $release_date,
-    ':director_id'=> $director_id,
-    // ':genre_id'=> $genre_id,
-    ':picture' => $picture,
-];
-// var_dump($paramsMovie);die();
-// var_dump($title,$duration,$synopsis,$release_date,$director_id, $genre_id); die();
+            $paramsMovie = [
+                ':title' => $title,
+                ':duration' => $duration,
+                ':synopsis' => $synopsis,
+                ':release_date' => $release_date,
+                ':director_id'=> $director_id,
+                ':picture' => $picture
+            ];
+            // var_dump($paramsMovie);die();
+            // var_dump($title,$duration,$synopsis,$release_date,$director_id, $genre_id); die();
 
-$dao->executerRequete($sqlMovie, $paramsMovie);
-// var_dump($sqlMovie); die();
+            $dao->executerRequete($sqlMovie, $paramsMovie);
+            // var_dump($sqlMovie); die();
 
-$film_id = $dao->getLastInsertId();
+            $film_id = $dao->getLastInsertId();
 
-$sqlFilmGenre = "INSERT INTO film_genre (film_id, genre_id)
+            $sqlFilmGenre = "INSERT INTO film_genre (film_id, genre_id)
                              VALUES (:film_id, :genre_id)";
             
             $paramsFilmGenre = [
@@ -247,9 +298,181 @@ $sqlFilmGenre = "INSERT INTO film_genre (film_id, genre_id)
             exit();
     
         }
+    }
+
+        public function updateMovieForm($id){
+            $dao = new DAO();
+
+            $sqlMovieDao = 'SELECT *FROM film WHERE id_film = :id';
+            $param = [':id'=>$id];
+            $sqlMovie = $dao->executerRequete($sqlMovieDao,$param);
+
+            $movie = $sqlMovie->fetch();
+
+            $sqlDirector = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, d.id_director
+            FROM person p INNER JOIN director d
+            ON p.id_person = d.person_id";
+            
+            $sqlGenre = "SELECT g.genre_name, g.id_genre
+                         FROM genre g";
+                                        
+                  
+            $directors = $dao->executerRequete($sqlDirector);
+    
+            $genres = $dao->executerRequete($sqlGenre);
+            
+    
+          
+            require "views/movie/updateMovieForm.php";
+    
+            
+        } 
+
+    
+
+    public function updateMovie($id){ 
+
+        $dao = new DAO();
+
+        $sqlMovieDao = 'SELECT * FROM film WHERE id_film =:id';
+        $param = [':id' => $id];
+        $sqlMovie = $dao->executerRequete($sqlMovieDao,$param);
+        
+        $movie = $sqlMovie->fetch();
+                                    
+
+        if(isset($_POST['submit'])){
+        
+            $title = filter_input(INPUT_POST,"title",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $duration = filter_input(INPUT_POST,"duration",FILTER_VALIDATE_INT);
+            $synopsis = filter_input(INPUT_POST,"synopsis",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $release_date = filter_input(INPUT_POST,"release_date",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $director_id = filter_input(INPUT_POST,"id_director",FILTER_VALIDATE_INT);
+            $genre_id = filter_input(INPUT_POST,"genre_id",FILTER_VALIDATE_INT);
+            
+            $picture = $movie['picture'];
+            
+
+            if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
+                // Define allowed file extensions
+                $allowed = [
+                    "jpg" => "image/jpg",
+                    "jpeg" => "image/jpeg",
+                    "png" => "image/png",
+                ];
+                // Extract file details
+                $filename = $_FILES['picture']['name'];
+                
+                $filetype = $_FILES['picture']['type'];
+                
+                $filesize = $_FILES['picture']['size'];
+                
+                // Get file extension and generate a unique file name using md5
+                $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                
+                $picture= md5($filename). ".". $extension;
+                
+                // Check for allowed file extensions and size limit
+                if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée");
+                
+                $maxsize = 2 * 1024 * 1024;
+                
+                if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde");
+                
+                // Check MIME type and proceed with file upload 
+                if(in_array($filetype, $allowed)){
+                    
+                    //check if file exists
+                    if (file_exists("public/images/" . $picture)) {
+                        
+                        echo $_FILES['picture']['name']. " existe déjà";
+                        
+                    }else {
+                        
+                        move_uploaded_file($_FILES['picture']['tmp_name'], "public/images/". $picture);
+                        
+                        
+                        echo "Votre fichier a été téléchargé avec succès!";
+                    }
+                }else {
+                    echo "Erreur : problème de téléchargement du fichier";
+                }
+            }else {
+                
+                echo "Erreur : " . $_FILES['picture']['error'];
+                
+            }   
+            
+            $sqlUpdateMovie = "UPDATE film
+                        SET title = :title,
+                            duration = :duration,
+                            synopsis = :synopsis,
+                            release_date = :release_date,
+                            director_id = :director_id,
+                            picture = :picture
+                        WHERE id_film = :id_film";
+
+            $paramsUpdateMovie = [
+                ':title' => $title,
+                ':duration' => $duration,
+                ':synopsis' => $synopsis,
+                ':release_date' => $release_date,
+                ':director_id'=> $director_id,
+                ':picture' => $picture,
+                ':id_film' => $id
+            ];
+            // var_dump($paramsMovie);die();
+            // var_dump($title,$duration,$synopsis,$release_date,$director_id, $genre_id); die();
+
+            $dao->executerRequete($sqlUpdateMovie, $paramsUpdateMovie);
+            // var_dump($sqlMovie); die();
+
+            // update film_genre
+            
+            $sqlUpdateFilmGenre = "UPDATE film_genre 
+                            SET genre_id = :genre_id
+                            WHERE film_id = :film_id";
+                            
+            $paramsUpdateFilmGenre = [
+                ':genre_id' => $genre_id, 
+                ':film_id' => $id,
+            ];
+
+            $dao->executerRequete($sqlUpdateFilmGenre, $paramsUpdateFilmGenre);
+
+            var_dump($genre_id); die();
+           
+            header("Location: index.php?action=listFilms");
+            exit();
+    
+        }
 
     }
 
+    public function deleteMovie() {
+
+        if (isset($_POST['submit'])) {
+            $id_film = filter_input(INPUT_POST, 'id_film', FILTER_VALIDATE_INT);
+    
+            if ($id_film) {
+                $dao = new DAO();
+                
+                $sqlDeleteFilmGenre = "DELETE FROM film_genre WHERE film_id = :id_film";
+                $paramsDeleteFilmGenre = [':id_film' => $id_film];
+                $dao->executerRequete($sqlDeleteFilmGenre, $paramsDeleteFilmGenre); 
+
+                // Delete the movie record from the database
+                $sqlDeleteMovie = "DELETE FROM film WHERE id_film = :id_film";
+                $paramsDeleteMovie = [':id_film' => $id_film];
+                $dao->executerRequete($sqlDeleteMovie, $paramsDeleteMovie);
+    
+                // Redirect to the movie list page
+                header("Location: index.php?action=listFilms");
+                exit();
+            }
+        }
+    }
+    
 
 }
 

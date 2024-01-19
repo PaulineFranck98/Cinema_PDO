@@ -127,6 +127,7 @@ class GenreController{
     }
     
     
+    
     public function deleteGenre() {
 
         if (isset($_POST['submit'])) {
