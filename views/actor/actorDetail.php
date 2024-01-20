@@ -24,13 +24,15 @@ ob_start();
             <p class="border"></p>
             <p>Genre : <?= $actor['person_gender'] ?></p>
             <p>Films :</p>
-            <?php while ($film = $actorFilms->fetch()) : ?>
-                <figure class="figure_films">
-                    <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>">
-                        <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
-                    </a>
-                </figure>
-            <?php endwhile; ?>
+            <div class="aside-films">
+                <?php while ($film = $actorFilms->fetch()) : ?>
+                    <figure class="figure_films">
+                        <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>">
+                            <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
+                        </a>
+                    </figure>
+                <?php endwhile; ?>
+            </div>
         </div>
 
     </div>

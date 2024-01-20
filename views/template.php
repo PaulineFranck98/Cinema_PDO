@@ -22,12 +22,12 @@
                     <li><a href='index.php?action=listActors'>Acteurs</a></li>
                     <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
                     <li><a href='index.php?action=listGenres'>Genres</a></li>
-                    <li><a href='index.php?action=addMovieForm'>Ajouter film</a></li>
-                    <li><a href='index.php?action=addActorForm'>Ajouter acteur</a></li>
+                    <li><a href='index.php?action=addMovieForm'>Ajouter un film</a></li>
+                    <!--  <li><a href='index.php?action=addActorForm'>Ajouter acteur</a></li>
+                    <li><a href='index.php?action=addRoleForm'>Ajouter rôle</a></li>
                     <li><a href='index.php?action=addDirectorForm'>Ajouter réalisateur</a></li>
                     <li><a href='index.php?action=addGenreForm'>Ajouter genre</a></li>
-                    <li><a href='index.php?action=addRoleForm'>Ajouter role</a></li>
-                    <li><a href='index.php?action=listRoles'>Rôles</a></li>
+                    <li><a href='index.php?action=listRoles'>Rôles</a></li> -->
 
                 </ul>
             </nav>

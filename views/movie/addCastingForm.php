@@ -7,8 +7,7 @@ ob_start();
 <h1>AJOUTER CASTING</h1>
 <div>
     <form action="index.php?action=addCasting" method="post" enctype="multipart/form-data" class="movieForm">
-        
-    <input type="hidden" name="film_id" value="<?= $film_id ?>">
+
 
       
         <div>
@@ -37,6 +36,19 @@ ob_start();
                 ?>
             </select> 
         </div> 
+        <div>
+            <label>Film</label>
+            <select name="film_id">
+                <?php
+                while ($film = $films->fetch()) {
+                    ?>  
+                    <option value='<?=$film['id_film']?>'><?=$film['title']?></option>
+                    <?php var_dump($film);?>
+                    <?php 
+                }
+                ?>
+            </select> 
+        </div> 
         <div>     
             <input type="submit" name="submit" value="Ajouter casting">
         </div>    
@@ -46,7 +58,7 @@ ob_start();
 
 
 <?php
-$title = "Ajouter un nouveau film";
+$title = "Ajouter un nouveau casting";
 $content = ob_get_clean();
 require "views/template.php";
 ?>

@@ -32,7 +32,7 @@ ob_start();
         <div>
 
             <label>Synopsis </label>
-            <input type="text" name="synopsis"> 
+            <input type="textarea" name="synopsis"> 
 
         </div> 
 

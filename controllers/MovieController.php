@@ -41,9 +41,14 @@ class MovieController{
 
 
         $sql3 = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
-        FROM person p INNER JOIN actor a
-        ON p.id_person = a.person_id
-        LIMIT 2";
+                FROM person p INNER JOIN actor a
+                ON p.id_person = a.person_id
+                INNER JOIN casting c
+                ON a.id_actor = c.actor_id
+                INNER JOIN film f
+                ON f.id_film = c.film_id
+                WHERE id_film = :id
+                LIMIT 3";
 
         $params = [
             'id' => $id,
@@ -58,7 +63,7 @@ class MovieController{
         
         $filmDirector = $dao->executerRequete($sql2, $params);
         
-        $mainActors = $dao->executerRequete($sql3);
+        $mainActors = $dao->executerRequete($sql3, $params);
         
         require "views/movie/detailMovie.php"; 
         
@@ -90,54 +95,116 @@ class MovieController{
 
     public function addCastingForm(){
 
+
         $dao = new DAO();
         // SQL query to select actor details
         $sqlActors = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
                 FROM person p INNER JOIN actor a
                 ON p.id_person = a.person_id";
-        // execute SQL query 
+        // execute SQL query
         $actors = $dao->executerRequete($sqlActors);
+
 
         $sqlRoles = "SELECT * FROM role r
         ORDER BY r.role_name";
+
+
         $roles = $dao->executerRequete($sqlRoles);
-        
+
+
+        $sqlFilms = "SELECT f.title, f.id_film FROM film f
+                    ORDER BY f.title";
+       
+        $films = $dao->executerRequete($sqlFilms);
+       
         require "views/movie/addCastingForm.php";
     }
-    
+   
+
 
    
-    public function addCasting($id){
+    public function addCasting(){
+
 
         $dao = new DAO();
-    
+   
         if (isset($_POST['submit'])) {
             // Retrieve data from the form submission
             $actor_id = filter_input(INPUT_POST, 'actor_id', FILTER_VALIDATE_INT);
             $role_id = filter_input(INPUT_POST, 'role_id', FILTER_VALIDATE_INT);
-            $film_id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT); // Retrieve film_id
-    
+            $film_id = filter_input(INPUT_POST, 'film_id', FILTER_VALIDATE_INT); // Retrieve film_id
+   
             // Insert casting information into the casting table
-            $sqlCasting = "INSERT INTO casting (film_id, actor_id, role_id) 
+            $sqlCasting = "INSERT INTO casting (film_id, actor_id, role_id)
                            VALUES (:film_id, :actor_id, :role_id)";
-            
+           
             $paramsCasting = [
-                ':film_id' => $id,
+                ':film_id' => $film_id,
                 ':actor_id' => $actor_id,
                 ':role_id' => $role_id,
             ];
-    
+   
             $dao->executerRequete($sqlCasting, $paramsCasting);
-    
-            // Redirect back to the movie's casting page or wherever you prefer
+   
+            // Redirect back to the movie's casting page
             header("Location: index.php?action=showCasting&id=" . $film_id);
             exit();
         }
-    
-      
+   
+     
     }
-    
 
+    // public function updateCastingForm($id){
+    //     $dao = new DAO();
+
+    //     $sqlFilmDao = 'SELECT *FROM film WHERE id_film = :id';
+        
+    //     $param = [':id'=>$id];
+        
+    //     $sqlFilm = $dao->executerRequete($sqlFilmDao,$param);
+
+    //     $sqlActors = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
+    //     FROM person p INNER JOIN actor a
+    //     ON p.id_person = a.person_id";
+    //     // execute SQL query
+    //     $actors = $dao->executerRequete($sqlActors);
+
+
+    //     $sqlRoles = "SELECT * FROM role r
+    //     ORDER BY r.role_name";
+
+
+    //     $roles = $dao->executerRequete($sqlRoles);
+
+
+    //     require "views/movie/updateCastingForm.php";
+    // }
+
+    // public function updateCasting($id){
+
+    //     $dao = new DAO();
+
+    
+    //     if (isset($_POST['submit'])) {
+    //         // Retrieve data from the form submission
+    //         $actor_id = filter_input(INPUT_POST, 'actor_id', FILTER_VALIDATE_INT);
+    //         $role_id = filter_input(INPUT_POST, 'role_id', FILTER_VALIDATE_INT);
+            
+    //         $sqlUpdateCasting = "UPDATE casting
+    //                             SET actor_id = :actor_id,
+    //                                 role_id = :role_id
+    //                             WHERE film_id = :film_id";
+
+    //         $paramsUpdateCasting = [
+    //             ':actor_id' => $actor_id,
+    //             ':role_id' => $role_id,
+    //             ':film_id'=> $id
+    //         ];
+
+    //         $dao->executerRequete($sqlUpdateCasting,$paramsUpdateCasting);
+        
+    //     }
+    // }
     
 
     

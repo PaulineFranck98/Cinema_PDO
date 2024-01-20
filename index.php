@@ -38,9 +38,9 @@
             break;
             case "casting": $movieCtrl->showCasting($id);
             break;
-            case "addCastingForm": $movieCtrl->addCastingForm($id);
+            case "addCastingForm": $movieCtrl->addCastingForm();
             break;
-            case "addCasting": $movieCtrl->addCasting($id);
+            case "addCasting": $movieCtrl->addCasting();
             break;
             case "homePage" : $homeCtrl->homePage();
             break;

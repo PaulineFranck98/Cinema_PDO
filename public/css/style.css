@@ -129,18 +129,17 @@ h1 {
 
 .detail-container {
   display: flex;
-  margin: 45px 0px 0px 160px;
+  margin: 45px 0px 0px 130px;
   width: 82%;
 }
 
-.detail-container figure {
-  width: 35%;
+.detail-containerfigure {
   margin-right: 40px;
+  width :40%;
 }
 
-.detail-container figure img {
+.detail-containerimg {
   width: 100%;
-  /* height: 88%; */
   border-radius: 7px;
   border: 1px solid rgb(0 0 0);
   box-shadow: rgb(0 0 0 / 32%) -1px 0px 19px 20px, rgb(0 0 0) 1px 0px 1px 0px;
@@ -173,16 +172,42 @@ h1 {
   /* height: auto; */
 }
 
+.aside-films{
+  display :flex;
+  flex-wrap: wrap;
+}
+
+.aside-actors{
+  display: flex;
+  width: 50%;
+
+}
+
+.aside-director{
+  width: 30%;
+
+}
+.aside-director figure{
+  width: 55%;
+
+}
+.aside-actors figure{
+  width :55%;
+  margin-right:10px;
+}
+
 .films-director {
   display: flex;
 }
 
 .aside-bottom {
   display: flex;
+  justify-content: space-between;
+  width:100%;
 }
 
 .aside-bottom figure {
-  width: 20%;
+  /* width: 20%; */
   text-align: center;
 }
 
