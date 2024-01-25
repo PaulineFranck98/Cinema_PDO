@@ -15,7 +15,7 @@ ob_start();
                 <input type="submit" name="submit" value="Supprimer le Genre">
             </form>
 
-            <h1 class="h1_detail"><?= mb_strtoupper($genre['genre_name']) ?></h1>
+            <h1><?= mb_strtoupper($genre['genre_name']) ?></h1>
             <?php while ($film = $genreFilms->fetch()) : ?>
                 <figure class="figure_films1">
                     <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>">

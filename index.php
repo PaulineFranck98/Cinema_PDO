@@ -14,7 +14,9 @@
     $movieCtrl = new MovieController();
     $genreCtrl = new GenreController();
     $roleCtrl = new RoleController();
- 
+    
+    $defaultMovieId = 6;
+    
     // index.php va intercepter la requête HTTP et va orienter vers le bon controller et la bonne méthode 
     //  ex : index.php?action=listFilms
     // on passe ici par l'URL avec GET
@@ -26,7 +28,7 @@
         // alors on switch vers les différents 'action' possibles 
         switch($_GET['action']){
             // 1er case listFilms : pour avoir accès à listFilms, tu vas chercher $movieCtrl et va voir si listFilms existe 
-            case "listFilms": $movieCtrl->findAllMovies(); 
+            case "listFilms": $movieCtrl->findOneMovieById($id); 
             break; 
             case "listActors": $personCtrl->findAllActors();
             break;
@@ -105,12 +107,12 @@
 
 
         
-            default : $homeCtrl->homePage();
+            default : $movieCtrl->findOneById($defaultMovieId);
         }
         
     } else {
         //Si l'url de contient pas d'action enregistrer, ont fait appel au constructeur homepage, pour afficher la page d'acceuil par défaut
-        $homeCtrl->homePage();
+        $movieCtrl->findOneById($defaultMovieId);
     }
     
     

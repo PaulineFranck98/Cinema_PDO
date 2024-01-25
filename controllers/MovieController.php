@@ -3,18 +3,18 @@ require_once "bdd/DAO.php";
 
 class MovieController{
 
-    public function findAllMovies(){
-        // je peux instancier ici cette class grâce au require_once "bdd/DAO.php";
-        // il va donc pouvoir utiliser le constructeur de Dao 
-        $dao = new DAO();
+    // public function findAllMovies(){
+    //     // je peux instancier ici cette class grâce au require_once "bdd/DAO.php";
+    //     // il va donc pouvoir utiliser le constructeur de Dao 
+    //     $dao = new DAO();
 
-        $sql = "SELECT f.id_film, f.title, f.picture 
-                FROM film f";
+    //     $sql = "SELECT f.id_film, f.title, f.picture 
+    //             FROM film f";
 
-        $films = $dao->executerRequete($sql);
-        // var_dump($films); die();
-        require "views/movie/listFilms.php"; 
-    }
+    //     $films = $dao->executerRequete($sql);
+    //     // var_dump($films); die();
+    //     require "views/movie/listFilms.php"; 
+    // }
 
   
 
@@ -23,7 +23,7 @@ class MovieController{
 
         $dao = new DAO();
 
-        $sql = "SELECT f.id_film, f.title, f.picture, f.synopsis, DATE_FORMAT(f.release_date, '%d/%m/%Y') AS date 
+        $sql = "SELECT f.id_film, f.title, f.picture, f.synopsis, DATE_FORMAT(f.release_date, '%Y') AS date, f.banner, f.title_picture, f.age_min 
                 FROM film f
                 WHERE id_film = :id";
 
@@ -31,43 +31,75 @@ class MovieController{
         $sqlDuree = "SELECT f.duration
                      FROM film f
                      WHERE id_film = :id";
+        
+        $sqlLastfilms = "SELECT f.id_film,  f.title, DATE_FORMAT(f.release_date, '%Y') AS date, f.picture
+            FROM film f
+            ORDER BY YEAR(f.release_date) DESC, MONTH(f.release_date) DESC, DAY(f.release_date) DESC
+            LIMIT 3";
 
-        $sql2 = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, p.picture, d.id_director, f.title, f.id_film
-                        FROM person p INNER JOIN director d
-                        ON p.id_person = d.person_id
-                        INNER JOIN film f
-                        ON d.id_director = f.director_id
-                        WHERE id_film = :id";
-
-
-        $sql3 = "SELECT a.id_actor, CONCAT(p.first_name,' ',p.last_name) AS actor, p.last_name, p.picture
-                FROM person p INNER JOIN actor a
-                ON p.id_person = a.person_id
-                INNER JOIN casting c
-                ON a.id_actor = c.actor_id
-                INNER JOIN film f
-                ON f.id_film = c.film_id
-                WHERE id_film = :id
-                LIMIT 3";
+      
 
         $params = [
             'id' => $id,
         ];
 
-    
+
         $film = $dao->executerRequete($sql, $params);
         // instancier une variable avec la requete 
         $dureeFilmObject = $dao->executerRequete($sqlDuree, $params);
-        
+
         $time = $this->durationMovie($dureeFilmObject);
+        $lastmovies = $dao->executerRequete($sqlLastfilms);
+       
+        // $filmDirector = $dao->executerRequete($sql2, $params);
         
-        $filmDirector = $dao->executerRequete($sql2, $params);
+        // $mainActors = $dao->executerRequete($sql3, $params);
         
-        $mainActors = $dao->executerRequete($sql3, $params);
+        require "views/movie/detailMovie.php";
         
-        require "views/movie/detailMovie.php"; 
         
     }
+    public function findOneMovieById($id)
+    {
+
+        $dao = new DAO();
+
+        $sql = "SELECT f.id_film, f.title, f.picture, f.synopsis, DATE_FORMAT(f.release_date, '%Y') AS date, f.banner, f.title_picture, f.age_min 
+                FROM film f
+                WHERE id_film = :id";
+
+        //faire une deuxieme requete just avec la duree
+        $sqlDuree = "SELECT f.duration
+                     FROM film f
+                     WHERE id_film = :id";
+        
+
+        $sqlFilms = "SELECT f.id_film,  f.title, DATE_FORMAT(f.release_date, '%Y') AS date, f.picture
+            FROM film f
+            ORDER BY YEAR(f.release_date) DESC, MONTH(f.release_date) DESC, DAY(f.release_date) DESC";
+
+        $params = [
+            'id' => $id,
+        ];
+
+
+        $movieDetail = $dao->executerRequete($sql, $params);
+        // instancier une variable avec la requete 
+        $dureeFilmObject = $dao->executerRequete($sqlDuree, $params);
+
+        $time = $this->durationMovie($dureeFilmObject);
+    
+        $films= $dao->executerRequete($sqlFilms);
+        // $filmDirector = $dao->executerRequete($sql2, $params);
+        
+        // $mainActors = $dao->executerRequete($sql3, $params);
+        
+      
+        require "views/movie/listFilms.php"; 
+        
+    }
+
+
     public function showCasting($id){
 
         $dao = new DAO();
@@ -227,13 +259,13 @@ class MovieController{
 
             return $minute. " minutes." ;
 
-        }else if($hours == 1){ 
+        }else{ 
 
-            return  $hours. " heure et ". $minute. " minutes." ;
+            return  $hours. "h". $minute;
 
-        }else{
+        // }else{
 
-            return  $hours. " heures et ". $minute. " minutes." ;
+        //     return  $hours. " heures et ". $minute. " minutes." ;
 
         }
 

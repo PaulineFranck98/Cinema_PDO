@@ -1,28 +1,77 @@
 <?php
-// Démarrage de la temporisation de sortie
+
 ob_start();
 ?>
-
-<h1>FILMS</h1>
-<div class="films-grid">
+<div>
     <?php
-    while ($film = $films->fetch()) {
-    ?>
-        <figure class="figure_films">
-            <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>">
-                <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
-            </a>
-            <figcaption>
-                <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>"><strong><?= $film['title'] ?></strong></a>
-            </figcaption>
-        </figure>
-    <?php
-    }
-    ?>
-</div>
 
-<?php
-$title = "Liste des films";
+    while ($movie = $movieDetail->fetch()) { 
+        ?>
+        <div class="banner">
+
+        <div class=" background">
+                <img src="./public/images/<?= $movie['banner'] ?>" alt="background image">
+        </div>
+
+        <div class="content active">
+
+                <img src="./public/images/<?= $movie['title_picture'] ?>" alt="interstellar title png" class="movie-title">
+            
+                <h4>
+                    <span><?=$movie['date']?></span><span><i><?= $movie['age_min'] ?>+</i></span>
+                    <span><?= $time ?></span><span>Action</span>
+                </h4>
+
+                <p>
+                    <?= $movie['synopsis'] ?>
+                </p>
+
+                <div class="button">
+                    <a href="#"><i class="fa-solid fa-play"></i>  Voir</a>
+                    <!-- <a href="#"><i class="fa-solid fa-plus"></i>  Ma Liste</a> -->
+                    <a href="index.php?action=casting&id=<?=$movie['id_film']?>">Casting</a>
+                </div>
+            </div>
+            <div style="display:flex;"> 
+                <div class="carousel-box">
+                    <div class="carousel">
+                        <?php
+                        while ($film = $films->fetch()) {
+                        ?>
+
+                            <div class="carousel-item">
+                                <a href="index.php?action=listFilms&id=<?= $film['id_film'] ?>">
+                                    <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
+                                </a>
+                            </div>
+                        <?php }?>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="play" onClick="toggleVideo();"><i class="fa-regular fa-circle-play"></i>Voir la Bande Annonce</a>
+
+            <ul class="sci">
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            </ul>
+        </div>
+        <div class="trailer">
+            <video src="./public/videos/interstellar_vid.mp4"
+            muted
+            controls="true"
+            autoplay="true"
+            ></video>
+            <img src="./public/images/close_cross.png" alt="" class="close"
+            onClick="toggleVideo();">
+
+        </div>
+    
+        <?php } ?>
+    </div>
+ <?php
+$title = "Détails du film";
 $content = ob_get_clean();
 require "views/template.php";
 ?>
