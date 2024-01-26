@@ -7,7 +7,7 @@ ob_start();
 <h1>MODIFIER L'ACTEUR</h1>
 <div>
    
-    <form action="index.php?action=updateActor&id=<?=$actor['id_actor']?>" method="post" enctype="multipart/form-data" class="movieForm">
+    <form action="index.php?action=updateActor&id=<?=$actor['id_actor']?>" method="post" enctype="multipart/form-data" class="personForm">
 
         <div>
             <label for="fileUpload">Photo</label> 

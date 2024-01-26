@@ -4,10 +4,10 @@ ob_start();
 
 ?>
 
-<h1>AJOUTER UN ACTEUR</h1>
+<h1 style="margin-top:120px;">AJOUTER UN ACTEUR</h1>
 <div>
     
-    <form action="index.php?action=addActor" method="post" enctype="multipart/form-data" class="movieForm">
+    <form action="index.php?action=addActor" method="post" enctype="multipart/form-data" class="personForm">
 
         <div>
             <label for="fileUpload">Photo</label> 

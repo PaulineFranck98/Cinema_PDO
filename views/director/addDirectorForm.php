@@ -4,9 +4,10 @@ ob_start();
 
 ?>
 
+<h1 style="margin-top:120px;">AJOUTER UN RÉALISATEUR</h1>
 <div>
 
-    <form action="index.php?action=addDirector" method="post" enctype="multipart/form-data" class="movieForm">
+    <form action="index.php?action=addDirector" method="post" enctype="multipart/form-data" class="personForm">
 
 
         <div>
@@ -32,7 +33,7 @@ ob_start();
 </div>
 
 <?php
-$title =  'Ajouter un nouvel acteur';
+$title =  'Ajouter un nouveau réalisateur';
 $content = ob_get_clean();
 require 'views/template.php';
 ?>

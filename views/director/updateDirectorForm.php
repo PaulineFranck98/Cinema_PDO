@@ -8,7 +8,7 @@ ob_start();
     <?php
 
     ?>
-    <form action="index.php?action=updateDirector&id=<?=$director['id_director']?>" method="post" enctype="multipart/form-data" class="movieForm">
+    <form action="index.php?action=updateDirector&id=<?=$director['id_director']?>" method="post" enctype="multipart/form-data" class="personForm">
 
         <div>
             <label for="fileUpload">Photo</label> 

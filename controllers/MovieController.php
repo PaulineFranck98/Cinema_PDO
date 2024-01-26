@@ -275,8 +275,8 @@ class MovieController{
         $dao = new DAO();
 
         $sqlDirector = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, d.id_director
-        FROM person p INNER JOIN director d
-        ON p.id_person = d.person_id";
+                        FROM person p INNER JOIN director d
+                        ON p.id_person = d.person_id";
         
         $sqlGenre = "SELECT g.genre_name, g.id_genre
                      FROM genre g";
