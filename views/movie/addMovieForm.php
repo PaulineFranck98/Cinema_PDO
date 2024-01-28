@@ -3,7 +3,9 @@
 // Démarrage de la temporisation de sortie
 ob_start();
 ?>
-
+<div class=" background">
+                <img src="./public/images/interstellar_banner.jpg" alt="background image">
+        </div>
 <h1 style="margin-top:120px;">AJOUTER UN FILM</h1>
 <div>
     <form action="index.php?action=addMovie" method="post" enctype="multipart/form-data" class="movieForm">
@@ -24,13 +26,13 @@ ob_start();
             <div class="movieForm-div">
 
                 <label for="fileUpload">Image de fond</label> 
-                <input type="file" name="background_picture" id="fileUpload">
+                <input type="file" name="banner" id="fileUpload">
 
             </div>
             <div class="movieForm-div">
 
                 <label for="fileUpload">Titre <small> (en png)</small></label> 
-                <input type="file" name="title_png" id="fileUpload">
+                <input type="file" name="title_picture" id="fileUpload">
 
             </div>
 
@@ -48,14 +50,6 @@ ob_start();
                 <textarea name="synopsis" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea> 
 
             </div> 
-
-            <div class="movieForm-div">
-
-                <label>Date de sortie </label>
-                <input type="date" name="release_date"> 
-
-            </div>
-
             <div class="movieForm-div3">
                 <div class="movieForm-div4">
                     <label>Réalisateur</label>
@@ -84,6 +78,20 @@ ob_start();
                     </select>
                 </div>
             </div> 
+            <div class="movieForm-div5">
+                <div class="movieForm-div">
+
+                    <label>Date de sortie </label>
+                    <input type="date" name="release_date">
+                </div>
+                <div class="movieForm-div"> 
+                    <label>Age minimum</label>
+                    <input type="number" min="0" step="any" name="age_min"> 
+
+                </div>
+            </div>
+
+           
             <div>     
                 <input type="submit" name="submit" value="Ajouter le film">
             </div>  

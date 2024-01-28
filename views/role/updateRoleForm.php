@@ -4,10 +4,14 @@ ob_start();
 
 ?>
 
+<div class=" background">
+    <img src="./public/images/interstellar_banner.jpg" alt="background image">
+</div>
 
-<h1>Modifier un rôle</h1>
+<h1 style="margin-top:120px;">MODIFIER LE RÔLE</h1>
 
-<form action="index.php?action=updateRole" method="post">
+
+<form action="index.php?action=updateRole" method="post" class="personForm">
 
     <input type="hidden" name="id_role" value="<?= isset($role['id_role']) ? $role['id_role'] : ''; ?>">
 

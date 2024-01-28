@@ -128,27 +128,27 @@ class GenreController{
     
     
     
-    public function deleteGenre() {
+    public function deleteGenre($id) {
+
 
         if (isset($_POST['submit'])) {
 
-            $id_genre = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
+            $id = filter_input(INPUT_POST, 'id_genre', FILTER_VALIDATE_INT);
 
-            if ($id_genre) {
+           
+            $dao = new DAO();
 
-                $dao = new DAO();
+            $sql = "DELETE FROM genre WHERE id_genre = :id_genre";
 
-                $sql = "DELETE FROM genre WHERE id_genre = :id_genre";
+            $params = [':id_genre' => $id];
 
-                $params = [':id_genre' => $id_genre];
+            $dao->executerRequete($sql, $params);
 
-                $dao->executerRequete($sql, $params);
-
-                
-                header("Location: index.php?action=listGenres");
-                
-                exit();
-            }
+            
+            header("Location: index.php?action=listGenres");
+            
+            exit();
+            
         }
     }
 

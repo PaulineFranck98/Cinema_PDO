@@ -3,9 +3,12 @@
 ob_start();
 ?>
 
-<h1>Ajouter un genre</h1>
+<div class=" background">
+    <img src="./public/images/interstellar_banner.jpg" alt="background image">
+</div>
+<h1 style="margin-top:120px;">AJOUTER UN GENRE</h1>
 
-<form action="index.php?action=addGenre" method="post">
+<form action="index.php?action=addGenre" class="personForm" method="post">
 
 
     <label for="genre_name">Nom du genre:</label>

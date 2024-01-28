@@ -7,9 +7,6 @@ ob_start();
     ?>
     <h1 class="h1_detail"><?= mb_strtoupper($director['director']) ?></h1>
 
-   
-
-
     <div class="detail-container">
         <figure>
             <img src="./public/images/<?= $director['picture'] ?>" alt="picture of director : <?= $director['director'] ?>"  class="director-img">
@@ -23,9 +20,7 @@ ob_start();
             <div class="aside-films">
                 <?php while ($film = $directorFilms->fetch()) : ?>
                     <figure class="figure_films">
-                        <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>" >
                             <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
-                        </a>
                     </figure>
                 <?php endwhile; ?>
             </div>

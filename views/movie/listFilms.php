@@ -52,9 +52,14 @@ ob_start();
             <a href="#" class="play" onClick="toggleVideo();"><i class="fa-regular fa-circle-play"></i>Voir la Bande Annonce</a>
 
             <ul class="sci">
+                <li><a href="index.php?action=updateMovieForm&id=<?= $movie['id_film'] ?>">Modifier</a></li>
                 <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><form action="index.php?action=deleteMovie&id=<?=$movie['id_film']?>" method="post"> 
+                    <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">
+                    <input  type="submit" name="submit" value="Supprimer">
+                </form></li>
             </ul>
         </div>
         <div class="trailer">

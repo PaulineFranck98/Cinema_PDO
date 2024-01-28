@@ -23,7 +23,8 @@
             <li><a href='index.php?action=listGenres'>Genres</a></li>
             <li><a href='index.php?action=listActors'>Acteurs</a></li>
             <li><a href='index.php?action=listDirectors'>Réalisateurs</a></li>
-            <li><a href='index.php?action=addMovieForm'>Ajouter</a></li>
+            <!-- <li><a href='index.php?action=addMovieForm'>Ajouter</a></li> -->
+            <li><a href='index.php?action=listRoles'>Roles</a></li>
         </ul>
         <div class="search">
             <input type="text" placeholder="Rechercher"/>

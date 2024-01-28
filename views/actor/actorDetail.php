@@ -23,9 +23,7 @@ ob_start();
             <div class="aside-films">
                 <?php while ($film = $actorFilms->fetch()) : ?>
                     <figure class="figure_films">
-                        <a href="index.php?action=detailMovie&id=<?= $film['id_film'] ?>" >
-                            <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>">
-                        </a>
+                            <img src="./public/images/<?= $film['picture'] ?>" alt="picture of film : <?= $film['title'] ?>"> 
                     </figure>
                 <?php endwhile; ?>
             </div>

@@ -4,7 +4,7 @@ ob_start();
 
 ?>
 
-<h1>MODIFIER L'ACTEUR</h1>
+<h1 class="h1_detail">MODIFIER L'ACTEUR</h1>
 <div>
    
     <form action="index.php?action=updateActor&id=<?=$actor['id_actor']?>" method="post" enctype="multipart/form-data" class="personForm">
@@ -32,7 +32,8 @@ ob_start();
 </div>
 
 <?php
-$title =  'Modifier un acteur/Ajouter un nouvel acteur';
+$title =  'Modifier un acteur';
+$currentPage = 'personDetail';
 $content = ob_get_clean();
 require 'views/template.php';
 ?>

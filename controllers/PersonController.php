@@ -96,6 +96,7 @@ class PersonController{
         $directorFilms = $dao->executerRequete($sql1, $params);
 
         require "views/director/directorDetail.php";
+        
     }
 
 

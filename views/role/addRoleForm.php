@@ -4,10 +4,13 @@ ob_start();
 
 ?>
 
+<div class=" background">
+    <img src="./public/images/interstellar_banner.jpg" alt="background image">
+</div>
 
-<h1>Ajouter un rôle</h1>
+<h1 style="margin-top:120px;">AJOUTER UN RÔLE</h1>
 
-<form action="index.php?action=addRole" method="post">
+<form action="index.php?action=addRole" method="post" class="personForm">
 
 
     <label for="role_name">Nom du role:</label>

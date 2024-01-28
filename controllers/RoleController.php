@@ -97,29 +97,31 @@ class RoleController{
     
 
     
-    public function deleteRole() {
+    public function deleteRole($id) {
 
         if (isset($_POST['submit'])) {
 
-            $id_role = filter_input(INPUT_POST, 'id_role', FILTER_VALIDATE_INT);
+            $id = filter_input(INPUT_POST, 'id_role', FILTER_VALIDATE_INT);
 
-            if ($id_role) {
+            
 
-                $dao = new DAO();
+            $dao = new DAO();
 
-                $sql = "DELETE FROM role WHERE id_role = :id_role";
+            $sql = "DELETE FROM role WHERE id_role = :id_role";
 
-                $params = [':id_role' => $id_role];
+            $params = [':id_role' => $id];
 
-                $dao->executerRequete($sql, $params);
+            $dao->executerRequete($sql, $params);
 
-                
-                header("Location: index.php?action=listRoles");
-                
-                exit();
-            }
+            
+            header("Location: index.php?action=listRoles");
+            
+            exit();
+            
         }
     }
+    
+   
 
 }
 

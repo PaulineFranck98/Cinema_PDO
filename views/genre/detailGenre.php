@@ -10,7 +10,7 @@ ob_start();
             
             <a href="index.php?action=updateGenreForm&id=<?= $genre['id_genre'] ?>">Modifier</a>
             
-            <form action="index.php?action=deleteGenre" method="post">
+            <form action="index.php?action=deleteGenre&id=<?= $genre['id_genre'] ?>" method="post">
                 <input type="hidden" name="id_genre" value="<?= $genre['id_genre'] ?>">
                 <input type="submit" name="submit" value="Supprimer le Genre">
             </form>

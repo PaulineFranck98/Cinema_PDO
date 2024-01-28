@@ -56,7 +56,7 @@
             break;
             case "updateMovie" : $movieCtrl->updateMovie($id);
             break;
-            case "deleteMovie" : $movieCtrl->deleteMovie();
+            case "deleteMovie" : $movieCtrl->deleteMovie($id);
             break;
             case "updateMovieForm" : $movieCtrl->updateMovieForm($id);
             break;
@@ -86,7 +86,7 @@
             break;
             case "addGenreForm" : $genreCtrl->addGenreForm();
             break;
-            case "deleteGenre" : $genreCtrl->deleteGenre();
+            case "deleteGenre" : $genreCtrl->deleteGenre($id);
             break;
             case "detailGenre" : $genreCtrl->findGenreByID($id);
             break;
@@ -98,7 +98,7 @@
             break;
             case "addRole" : $roleCtrl->addRole();
             break;
-            case "deleteRole" : $roleCtrl->deleteRole();
+            case "deleteRole" : $roleCtrl->deleteRole($id);
             break;
             case "listRoles" : $roleCtrl->findAllRoles();
             break;

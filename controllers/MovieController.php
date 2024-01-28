@@ -99,6 +99,26 @@ class MovieController{
         
     }
 
+    public function deleteMovie($id) {
+
+        $dao = new DAO();
+        
+        if (isset($_POST['submit'])) {
+            $id = filter_input(INPUT_POST, 'id_film', FILTER_VALIDATE_INT);
+        
+            $sql = "DELETE FROM film WHERE id_film = :id_film";
+
+            $params = [':id_film' => $id];
+
+            $dao->executerRequete($sql, $params);
+    
+            
+            header("Location: index.php?action=listFilms");
+            exit();
+        }
+       
+    }
+    
 
     public function showCasting($id){
 
@@ -306,62 +326,50 @@ class MovieController{
             $release_date = filter_input(INPUT_POST,"release_date",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $director_id = filter_input(INPUT_POST,"id_director",FILTER_VALIDATE_INT);
             $genre_id = filter_input(INPUT_POST,"genre_id",FILTER_VALIDATE_INT);
-            
-            $picture ='';
-            // $release_date = new DateTime($release_date_string);
+            $age_min = filter_input(INPUT_POST,"age_min",FILTER_VALIDATE_INT);
 
-            if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
-                // Define allowed file extensions
-                $allowed = [
-                    "jpg" => "image/jpg",
-                    "jpeg" => "image/jpeg",
-                    "png" => "image/png",
-                ];
-                // Extract file details
-                $filename = $_FILES['picture']['name'];
-                
-                $filetype = $_FILES['picture']['type'];
-                
-                $filesize = $_FILES['picture']['size'];
-                
-                // Get file extension and generate a unique file name using md5
-                $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                
-                $picture= md5($filename). ".". $extension;
-                
-                // Check for allowed file extensions and size limit
-                if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée");
-                
-                $maxsize = 2 * 1024 * 1024;
-                
-                if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde");
-                
-                // Check MIME type and proceed with file upload 
-                if(in_array($filetype, $allowed)){
-                    
-                    //check if file exists
-                    if (file_exists("public/images/" . $picture)) {
-                        
-                        echo $_FILES['picture']['name']. " existe déjà";
-                        
-                    }else {
-                        
-                        move_uploaded_file($_FILES['picture']['tmp_name'], "public/images/". $picture);
-                        
-                        
-                        echo "Votre fichier a été téléchargé avec succès!";
-                    }
-                }else {
-                    echo "Erreur : problème de téléchargement du fichier";
-                }
-            }else {
-                
-                echo "Erreur : " . $_FILES['picture']['error'];
-                
-            }   
+            $picture = '';
+            $banner = '';
+            $title_picture = '';
             
-            $sqlMovie = "INSERT INTO film (title,duration,synopsis,release_date,director_id, picture)
-                        VALUES (:title,:duration,:synopsis,:release_date,:director_id, :picture)";
+            // Function to process image upload
+            function processImageUpload($fieldName) {
+                if(isset($_FILES[$fieldName]) && $_FILES[$fieldName]['error'] == 0) {
+                    $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
+                    $filename = $_FILES[$fieldName]['name'];
+                    $filetype = $_FILES[$fieldName]['type'];
+                    $filesize = $_FILES[$fieldName]['size'];
+                    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                    $newFilename = md5($filename) . "." . $extension;
+            
+                    if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée.");
+                    $maxsize = 2 * 1024 * 1024;
+                    if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde.");
+            
+                    if(!file_exists("public/images/" . $newFilename)) {
+                        move_uploaded_file($_FILES[$fieldName]['tmp_name'], "public/images/" . $newFilename);
+                    } else {
+                        echo $_FILES[$fieldName]['name'] . " existe déjà.";
+                    }
+                    return $newFilename;
+                }
+                return null;
+            }
+            
+            // Process 'picture'
+            $picture = processImageUpload('picture');
+            
+            // Process 'banner'
+            $banner = processImageUpload('banner');
+            
+            // Process 'title_picture'
+            $title_picture = processImageUpload('title_picture');
+            
+           
+            
+            
+            $sqlMovie = "INSERT INTO film (title,duration,synopsis,release_date,director_id, picture, banner, title_picture, age_min)
+                        VALUES (:title,:duration,:synopsis,:release_date,:director_id, :picture, :banner, :title_picture, :age_min)";
 
             $paramsMovie = [
                 ':title' => $title,
@@ -369,7 +377,10 @@ class MovieController{
                 ':synopsis' => $synopsis,
                 ':release_date' => $release_date,
                 ':director_id'=> $director_id,
-                ':picture' => $picture
+                ':picture' => $picture,
+                ':banner' => $banner,
+                ':title_picture'=> $title_picture,
+                ':age_min'=> $age_min
             ];
             // var_dump($paramsMovie);die();
             // var_dump($title,$duration,$synopsis,$release_date,$director_id, $genre_id); die();
@@ -409,8 +420,8 @@ class MovieController{
             $movie = $sqlMovie->fetch();
 
             $sqlDirector = "SELECT CONCAT(p.first_name,' ',p.last_name) AS director, d.id_director
-            FROM person p INNER JOIN director d
-            ON p.id_person = d.person_id";
+                            FROM person p INNER JOIN director d
+                            ON p.id_person = d.person_id";
             
             $sqlGenre = "SELECT g.genre_name, g.id_genre
                          FROM genre g";
@@ -448,59 +459,46 @@ class MovieController{
             $release_date = filter_input(INPUT_POST,"release_date",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $director_id = filter_input(INPUT_POST,"id_director",FILTER_VALIDATE_INT);
             $genre_id = filter_input(INPUT_POST,"genre_id",FILTER_VALIDATE_INT);
+            $age_min = filter_input(INPUT_POST,"age_min",FILTER_VALIDATE_INT);
             
             $picture = $movie['picture'];
+            $banner = $movie['banner'];
+            $title_picture = $movie['title_picture'];
             
-
-            if(isset($_FILES['picture']) && $_FILES['picture']['error']==0){
-                // Define allowed file extensions
-                $allowed = [
-                    "jpg" => "image/jpg",
-                    "jpeg" => "image/jpeg",
-                    "png" => "image/png",
-                ];
-                // Extract file details
-                $filename = $_FILES['picture']['name'];
-                
-                $filetype = $_FILES['picture']['type'];
-                
-                $filesize = $_FILES['picture']['size'];
-                
-                // Get file extension and generate a unique file name using md5
-                $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                
-                $picture= md5($filename). ".". $extension;
-                
-                // Check for allowed file extensions and size limit
-                if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée");
-                
-                $maxsize = 2 * 1024 * 1024;
-                
-                if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde");
-                
-                // Check MIME type and proceed with file upload 
-                if(in_array($filetype, $allowed)){
-                    
-                    //check if file exists
-                    if (file_exists("public/images/" . $picture)) {
-                        
-                        echo $_FILES['picture']['name']. " existe déjà";
-                        
-                    }else {
-                        
-                        move_uploaded_file($_FILES['picture']['tmp_name'], "public/images/". $picture);
-                        
-                        
-                        echo "Votre fichier a été téléchargé avec succès!";
+            // Function to process image upload
+            function processImageUpload($fieldName) {
+                if(isset($_FILES[$fieldName]) && $_FILES[$fieldName]['error'] == 0) {
+                    $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
+                    $filename = $_FILES[$fieldName]['name'];
+                    $filetype = $_FILES[$fieldName]['type'];
+                    $filesize = $_FILES[$fieldName]['size'];
+                    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                    $newFilename = md5($filename) . "." . $extension;
+            
+                    if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée.");
+                    $maxsize = 2 * 1024 * 1024;
+                    if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde.");
+            
+                    if(!file_exists("public/images/" . $newFilename)) {
+                        move_uploaded_file($_FILES[$fieldName]['tmp_name'], "public/images/" . $newFilename);
+                    } else {
+                        echo $_FILES[$fieldName]['name'] . " existe déjà.";
                     }
-                }else {
-                    echo "Erreur : problème de téléchargement du fichier";
+                    return $newFilename;
                 }
-            }else {
-                
-                echo "Erreur : " . $_FILES['picture']['error'];
-                
-            }   
+                return null;
+            }
+            
+            // Process 'picture'
+            $picture = processImageUpload('picture');
+            
+            // Process 'banner'
+            $banner = processImageUpload('banner');
+            
+            // Process 'title_picture'
+            $title_picture = processImageUpload('title_picture');
+            
+           
             
             $sqlUpdateMovie = "UPDATE film
                         SET title = :title,
@@ -508,7 +506,10 @@ class MovieController{
                             synopsis = :synopsis,
                             release_date = :release_date,
                             director_id = :director_id,
-                            picture = :picture
+                            picture = :picture,
+                            banner = :banner,
+                            title_picture = :title_picture,
+                            age_min = :age_min
                         WHERE id_film = :id_film";
 
             $paramsUpdateMovie = [
@@ -518,6 +519,9 @@ class MovieController{
                 ':release_date' => $release_date,
                 ':director_id'=> $director_id,
                 ':picture' => $picture,
+                ':banner' => $banner,
+                ':title_picture' => $title_picture,
+                ':age_min' => $age_min,
                 ':id_film' => $id
             ];
             // var_dump($paramsMovie);die();
@@ -539,7 +543,7 @@ class MovieController{
 
             $dao->executerRequete($sqlUpdateFilmGenre, $paramsUpdateFilmGenre);
 
-            var_dump($genre_id); die();
+            // var_dump($genre_id); die();
            
             header("Location: index.php?action=listFilms");
             exit();
@@ -548,29 +552,29 @@ class MovieController{
 
     }
 
-    public function deleteMovie() {
+    // public function deleteMovie() {
 
-        if (isset($_POST['submit'])) {
-            $id_film = filter_input(INPUT_POST, 'id_film', FILTER_VALIDATE_INT);
+    //     if (isset($_POST['submit'])) {
+    //         $id_film = filter_input(INPUT_POST, 'id_film', FILTER_VALIDATE_INT);
     
-            if ($id_film) {
-                $dao = new DAO();
+    //         if ($id_film) {
+    //             $dao = new DAO();
                 
-                $sqlDeleteFilmGenre = "DELETE FROM film_genre WHERE film_id = :id_film";
-                $paramsDeleteFilmGenre = [':id_film' => $id_film];
-                $dao->executerRequete($sqlDeleteFilmGenre, $paramsDeleteFilmGenre); 
+    //             $sqlDeleteFilmGenre = "DELETE FROM film_genre WHERE film_id = :id_film";
+    //             $paramsDeleteFilmGenre = [':id_film' => $id_film];
+    //             $dao->executerRequete($sqlDeleteFilmGenre, $paramsDeleteFilmGenre); 
 
-                // Delete the movie record from the database
-                $sqlDeleteMovie = "DELETE FROM film WHERE id_film = :id_film";
-                $paramsDeleteMovie = [':id_film' => $id_film];
-                $dao->executerRequete($sqlDeleteMovie, $paramsDeleteMovie);
+    //             // Delete the movie record from the database
+    //             $sqlDeleteMovie = "DELETE FROM film WHERE id_film = :id_film";
+    //             $paramsDeleteMovie = [':id_film' => $id_film];
+    //             $dao->executerRequete($sqlDeleteMovie, $paramsDeleteMovie);
     
-                // Redirect to the movie list page
-                header("Location: index.php?action=listFilms");
-                exit();
-            }
-        }
-    }
+    //             // Redirect to the movie list page
+    //             header("Location: index.php?action=listFilms");
+    //             exit();
+    //         }
+    //     }
+    // }
     
 
 }

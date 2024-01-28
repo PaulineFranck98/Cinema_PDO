@@ -3,11 +3,9 @@
 ob_start();
 
 ?>
-
+<h1 class="h1_detail">MODIFIER LE RÉALISATEUR</h1>
 <div>
-    <?php
-
-    ?>
+   
     <form action="index.php?action=updateDirector&id=<?=$director['id_director']?>" method="post" enctype="multipart/form-data" class="personForm">
 
         <div>
@@ -34,6 +32,7 @@ ob_start();
 
 <?php
 $title =  'Modifier un réalisateur';
+$currentPage = 'personDetail';
 $content = ob_get_clean();
 require 'views/template.php';
 ?>

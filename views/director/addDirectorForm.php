@@ -3,7 +3,9 @@
 ob_start();
 
 ?>
-
+<div class=" background">
+    <img src="./public/images/interstellar_banner.jpg" alt="background image">
+</div>
 <h1 style="margin-top:120px;">AJOUTER UN RÉALISATEUR</h1>
 <div>
 

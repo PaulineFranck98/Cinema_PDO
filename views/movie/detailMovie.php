@@ -56,6 +56,11 @@ ob_start();
                 <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                 <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <form action="index.php?action=deleteMovie&id=<?=$movie['id_film']?>" method="post">
+                        
+                        <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">
+                        <input type="submit" name="submit" value="Supprimer">
+                </form>
             </ul>
         </div>
         <div class="trailer">
