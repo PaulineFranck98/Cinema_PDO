@@ -2,20 +2,6 @@
 require_once "bdd/DAO.php";
 
 class MovieController{
-
-    // public function findAllMovies(){
-    //     // je peux instancier ici cette class grâce au require_once "bdd/DAO.php";
-    //     // il va donc pouvoir utiliser le constructeur de Dao 
-    //     $dao = new DAO();
-
-    //     $sql = "SELECT f.id_film, f.title, f.picture 
-    //             FROM film f";
-
-    //     $films = $dao->executerRequete($sql);
-    //     // var_dump($films); die();
-    //     require "views/movie/listFilms.php"; 
-    // }
-
   
 
     public function findOneById($id)
@@ -307,7 +293,6 @@ class MovieController{
         $genres = $dao->executerRequete($sqlGenre);
         
 
-      
         require "views/movie/addMovieForm.php";
 
         
@@ -328,48 +313,40 @@ class MovieController{
             $genre_id = filter_input(INPUT_POST,"genre_id",FILTER_VALIDATE_INT);
             $age_min = filter_input(INPUT_POST,"age_min",FILTER_VALIDATE_INT);
 
-            $picture = '';
-            $banner = '';
-            $title_picture = '';
-            
-            // Function to process image upload
-            function processImageUpload($fieldName) {
-                if(isset($_FILES[$fieldName]) && $_FILES[$fieldName]['error'] == 0) {
-                    $allowed = ["jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png"];
-                    $filename = $_FILES[$fieldName]['name'];
-                    $filetype = $_FILES[$fieldName]['type'];
-                    $filesize = $_FILES[$fieldName]['size'];
-                    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                    $newFilename = md5($filename) . "." . $extension;
-            
-                    if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée.");
-                    $maxsize = 2 * 1024 * 1024;
-                    if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde.");
-            
-                    if(!file_exists("public/images/" . $newFilename)) {
-                        move_uploaded_file($_FILES[$fieldName]['tmp_name'], "public/images/" . $newFilename);
-                    } else {
-                        echo $_FILES[$fieldName]['name'] . " existe déjà.";
-                    }
-                    return $newFilename;
+            if(isset($_FILES['banner']) && $_FILES['banner']['error'] == 0) {
+                
+                $allowed = [
+                    "jpg" => "image/jpg", 
+                    "jpeg" => "image/jpeg", 
+                    "png" => "image/png"
+                ];
+                $filename = $_FILES['banner']['name'];
+                $filetype = $_FILES['banner']['type'];
+                $filesize = $_FILES['banner']['size'];
+                $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+                $newFilename = md5($filename) . "." . $extension;
+        
+                if(!array_key_exists($extension, $allowed)) die("Erreur : extension non autorisée.");
+                $maxsize = 2 * 1024 * 1024;
+                if($filesize > $maxsize) die("Erreur : taille de fichier trop lourde.");
+        
+                if(!file_exists("public/images/" . $newFilename)) {
+
+                    move_uploaded_file($_FILES['banner']['tmp_name'], "public/images/" . $newFilename);
+                
+                } else {
+
+                    echo $_FILES['banner']['name'] . " existe déjà.";
                 }
-                return null;
+                
+                return $newFilename;
             }
-            
-            // Process 'picture'
-            $picture = processImageUpload('picture');
-            
-            // Process 'banner'
-            $banner = processImageUpload('banner');
-            
-            // Process 'title_picture'
-            $title_picture = processImageUpload('title_picture');
-            
-           
+
+            return null;
             
             
-            $sqlMovie = "INSERT INTO film (title,duration,synopsis,release_date,director_id, picture, banner, title_picture, age_min)
-                        VALUES (:title,:duration,:synopsis,:release_date,:director_id, :picture, :banner, :title_picture, :age_min)";
+            $sqlMovie = "INSERT INTO film (title,duration,synopsis, release_date, director_id, banner, age_min)
+                        VALUES (:title,:duration,:synopsis, :release_date, :director_id, :banner, :age_min)";
 
             $paramsMovie = [
                 ':title' => $title,
@@ -377,17 +354,13 @@ class MovieController{
                 ':synopsis' => $synopsis,
                 ':release_date' => $release_date,
                 ':director_id'=> $director_id,
-                ':picture' => $picture,
-                ':banner' => $banner,
-                ':title_picture'=> $title_picture,
+                ':banner' => $newFilename,
                 ':age_min'=> $age_min
             ];
-            // var_dump($paramsMovie);die();
-            // var_dump($title,$duration,$synopsis,$release_date,$director_id, $genre_id); die();
+           
 
             $dao->executerRequete($sqlMovie, $paramsMovie);
-            // var_dump($sqlMovie); die();
-
+   
             $film_id = $dao->getLastInsertId();
 
             $sqlFilmGenre = "INSERT INTO film_genre (film_id, genre_id)
@@ -400,9 +373,6 @@ class MovieController{
 
             $dao->executerRequete($sqlFilmGenre, $paramsFilmGenre);
 
-
-
-          
            
             header("Location: index.php?action=listFilms");
             exit();
