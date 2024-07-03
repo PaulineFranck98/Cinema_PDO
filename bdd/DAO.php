@@ -7,14 +7,14 @@
 class DAO{
     
     private $bdd;
-    // fonction construct sert à donner une valeur à la propriété bdd, pour ce faire je crée l'instance PDO (class native) 
+  
     public function __construct(){
 
-        // PDO (PHP Data Objects) is a database access layer providing a uniform method of access to multiple databases (doesn't provide a database abstraction).
+        // PDO (PHP Data Objects) is a database access layer providing a uniform method of access to multiple databases 
         // new PDO instance to connect to the MySQL database
-        $this->bdd = new PDO('mysql:host=localhost;dbname=cinemasql;charset=utf8', 'root', ''); //DSN (Data Source Name) specifying the database type, host, database name, and charset.
+        //DSN (Data Source Name) specifying the database type, host, database name, and charset.
+        $this->bdd = new PDO('mysql:host=localhost;dbname=cinemasql;charset=utf8', 'root', ''); 
     }
-
 
     // Method to get the PDO database connection instance
     function getBDD(){
@@ -37,7 +37,6 @@ class DAO{
         }
         return $resultat; 
     }
-
 
     // Method to get the last inserted ID in the database.
     public function getLastInsertId(){
