@@ -58,7 +58,7 @@ ob_start();
                 <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
                 <li><form action="index.php?action=deleteMovie&id=<?=$movie['id_film']?>" method="post"> 
                     <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">
-                    <input  type="submit" name="submit" value="Supprimer">
+                    <input  class="delete-button" type="submit" name="submit" value="Supprimer">
                 </form></li>
             </ul>
         </div>

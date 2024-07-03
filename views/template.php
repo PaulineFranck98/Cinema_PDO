@@ -16,7 +16,7 @@
     <header class="<?= strpos($content, 'class="h1_detail"') !== false ? 'hide-header' : '' ?>">
         
     
-        <a href="#" class="logo">Imovies</a>
+        <a href="#" class="logo">ICinema</a>
         <ul class="nav">
             <li><a href="index.php?action=detailMovie&id=6"><i class="fa-solid fa-house"></i></a></li>
             <li><a href='index.php?action=listFilms&id=8'>Films</a></li>
