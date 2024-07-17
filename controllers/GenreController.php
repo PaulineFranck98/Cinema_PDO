@@ -19,11 +19,12 @@ class GenreController{
     }
 
     public function findGenreByID($id) {
+
         $dao = new DAO();
+
         $sql = "SELECT g.genre_name, g.id_genre
                 FROM genre g
                 WHERE g.id_genre = :id";
-    
     
         $sql1 ="SELECT g.genre_name, f.title, f.id_film, f.picture
                 FROM genre g

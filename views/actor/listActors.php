@@ -1,5 +1,5 @@
 <?php
-ob_start();
+    ob_start();
 ?>
 
 <!-- Include Swiper CSS -->
@@ -66,8 +66,8 @@ function toggleActorOverlay() {
     const actorOverlay = document.getElementById('actorOverlay');
     
     // Hide both the actor overlay and the blur overlay
-    blurOverlay.classList.remove('active'); // Change toggle to remove
-    actorOverlay.classList.remove('active'); // Change toggle to remove
+    blurOverlay.classList.remove('active'); 
+    actorOverlay.classList.remove('active'); 
 }
 
 
@@ -86,8 +86,9 @@ function toggleActorOverlay() {
     });
 </script>
 
+
 <?php
-$title = "Liste des acteurs";
-$content = ob_get_clean();
-require "views/template.php";
+    $title = "Liste des acteurs";
+    $content = ob_get_clean();
+    require "views/template.php";
 ?>
