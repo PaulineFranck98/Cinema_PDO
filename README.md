@@ -54,7 +54,9 @@ La base de données a été créée et gérée avec MySQL, utilisant le langage 
 <br/><br/>
 
 <h4>☑️ Swiper.js</h4>
-La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, permettant de présenter les affiches de films sous forme de carrousel sur la page d'accueil.
+La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, permettant de présenter les affiches de films sous forme de carrousel sur la page d'accueil. </br>
+
+![](swiper-taken.png)
   
 <br/><br/>
 
