@@ -10,6 +10,15 @@
 
 <br/>
 
+![](listing-actors.png)
+
+</br>
+
+![](detail-actor.png)
+
+
+
+
 <br/>
 
 <h3>⚙️ Technologies utilisées</h3>
