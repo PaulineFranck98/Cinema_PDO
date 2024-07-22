@@ -76,7 +76,8 @@ Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Creat
 <h4>☑️ Faille d’Upload </h4>
 Pour prévenir les failles de sécurité liées au téléchargement de fichiers malveillants, des vérifications de type MIME et de taille ont été mises en place. 
 
-<br/><br/>
+<br/>
+<br/>
 
 
 
