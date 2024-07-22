@@ -59,7 +59,7 @@ La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, perme
 <br/><br/>
 
 <!-- <h4>☑️ Swiper.js</h4> -->
-La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, permettant de présenter les affiches de films sous forme de carrousel sur la page d'accueil.
+<!--La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, permettant de présenter les affiches de films sous forme de carrousel sur la page d'accueil.-->
   
 <br/><br/>
 
