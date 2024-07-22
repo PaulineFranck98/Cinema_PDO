@@ -62,5 +62,10 @@ La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, perme
 Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Create, Read, Update, Delete - nécessaires à la gestion des données.
 <br/><br/>
 
+<h4>☑️ Faille d’Upload </h4>
+Pour prévenir les failles de sécurité liées au téléchargement de fichiers malveillants, des vérifications de type MIME et de taille ont été mises en place. 
+
+<br/><br/>
+
 
 
