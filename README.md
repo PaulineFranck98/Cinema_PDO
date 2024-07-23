@@ -14,7 +14,11 @@
 
 </br>
 
-![](detail-actor.png)
+![](detail-acteur-icinema.png)
+
+</br>
+
+![](genre-icinema.png)
 
 
 
