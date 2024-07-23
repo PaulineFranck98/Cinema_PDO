@@ -48,7 +48,10 @@ Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de
 
 <h4>☑️ Maquette</h4>
 La création d'une maquette avec Figma a permis de définir la position des éléments visuels et d'améliorer les aspects UI/UX du projet.
-  
+<br/><br/>
+
+![](Accueil-cinema1.png)
+
 <br/><br/>
 
 <h4>☑️ HTML Sémantique et CSS</h4>
