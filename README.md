@@ -122,6 +122,11 @@ public function updateMovie($id)
 ````php
 public function addActor()
 ````
+<br/>
+
+````php
+public function deleteGenre($id)
+````
 
 <br/><br/>
 
