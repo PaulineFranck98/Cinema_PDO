@@ -20,17 +20,23 @@
 🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
 🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
                               - le **Modèle Conceptuel de Données** (MCD)<br/>
-                              - le **Modèle Logique de Données** (MLD).<br/><br/>
+                              - le **Modèle Logique de Données** (MLD).<br/><br/><br/>
 
-<br/>
+<h2 align="center">Listing des acteurs</h2>
+
+
 
 ![](listing-actors0.png)
 
 </br>
 
+<h2 align="center">Détails d'un acteur</h2>
+
 ![](detail-acteur-icinema.png)
 
 </br>
+
+<h2 align="center">Liste des films par genre</h2>
 
 ![](genre-icinema.png)
 
