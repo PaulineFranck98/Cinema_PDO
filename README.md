@@ -10,6 +10,20 @@
 
 <br/></br>
 
+<h3>⚙️ Technologies utilisées</h3>
+
+<br/>
+
+🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
+🔴<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
+🔴<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
+🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
+🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
+                              - le **Modèle Conceptuel de Données** (MCD)<br/>
+                              - le **Modèle Logique de Données** (MLD).<br/><br/>
+
+<br/>
+
 ![](listing-actors0.png)
 
 </br>
@@ -25,19 +39,6 @@
 
 <br/>
 
-<h3>⚙️ Technologies utilisées</h3>
-
-<br/>
-
-🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
-🔴<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
-🔴<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
-🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
-🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
-                              - le **Modèle Conceptuel de Données** (MCD)<br/>
-                              - le **Modèle Logique de Données** (MLD).<br/><br/>
-
-<br/>
 
 <h3>🛠️ Détails Techniques</h3><br/>
 
