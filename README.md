@@ -112,6 +112,12 @@ La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, perme
 
 <img src="./checked-red.png" width="14"/><strong>  CRUD</strong> <br/><br/>
 Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Create, Read, Update, Delete - nécessaires à la gestion des données.
+<br/>
+
+````php
+public function updateMovie($id)
+````
+
 <br/><br/>
 
 <img src="./checked-red.png" width="14"/><strong>  Faille d’Upload </strong> <br/><br/>
