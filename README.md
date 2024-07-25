@@ -12,6 +12,12 @@
 
 <h3 align="center">⚙️ Technologies utilisées</h3>
 
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,vscode,github,git,figma" />
+  </a
+</p>
+
 <br/>
 
 🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
