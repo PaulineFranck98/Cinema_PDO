@@ -10,13 +10,43 @@
 
 <br/></br>
 
+<h3 align="center">⚙️ Technologies utilisées</h3>
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,vscode,github,git,figma" />
+  </a
+</p>
+<br/>
+<br/>
+<br/>
+
+🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
+🔴<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
+🔴<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
+🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
+🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/><br/>
+                              - le **Modèle Conceptuel de Données** (MCD)<br/>
+                              - le **Modèle Logique de Données** (MLD).<br/>
+<br/>
+<br/>
+<br/>
+
+<h2 align="center">Listing des acteurs</h2>
+
+
+
 ![](listing-actors0.png)
 
 </br>
 
+<h2 align="center">Détails d'un acteur</h2>
+
 ![](detail-acteur-icinema.png)
 
 </br>
+
+<h2 align="center">Liste des films par genre</h2>
 
 ![](genre-icinema.png)
 
@@ -25,21 +55,8 @@
 
 <br/>
 
-<h3>⚙️ Technologies utilisées</h3>
 
-<br/>
-
-🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
-🔴<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
-🔴<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
-🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
-🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
-                              - le **Modèle Conceptuel de Données** (MCD)<br/>
-                              - le **Modèle Logique de Données** (MLD).<br/><br/>
-
-<br/>
-
-<h3>🛠️ Détails Techniques</h3><br/>
+<h3 align="center">🛠️ Détails Techniques</h3><br/>
 
 <img src="./checked-red.png" width="14"/><strong> MCD - MLD</strong> <br/><br/>
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
@@ -61,6 +78,15 @@ Pour la structure de la page, le langage HTML a été utilisé avec des balises 
 
 <img src="./checked-red.png" width="14"/><strong>  Templates Réutilisables</strong> <br/><br/>
 Des templates réutilisables ont été créés et intégrés dans une mise en page - layout -  avec une gestion de temporisation de sortie grâce aux fonctions ob_start() et ob_get_clean() pour un rendu fluide.
+<br/>
+
+````php
+<?php
+    $title = "Liste des acteurs";
+    $content = ob_get_clean();
+    require "views/template.php";
+?>
+````
   
 <br/><br/>
 
@@ -103,6 +129,22 @@ La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, perme
 
 <img src="./checked-red.png" width="14"/><strong>  CRUD</strong> <br/><br/>
 Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Create, Read, Update, Delete - nécessaires à la gestion des données.
+<br/>
+
+````php
+public function updateMovie($id)
+````
+<br/>
+
+````php
+public function addActor()
+````
+<br/>
+
+````php
+public function deleteGenre($id)
+````
+
 <br/><br/>
 
 <img src="./checked-red.png" width="14"/><strong>  Faille d’Upload </strong> <br/><br/>
