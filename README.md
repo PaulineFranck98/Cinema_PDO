@@ -19,14 +19,18 @@
 </p>
 <br/>
 <br/>
+<br/>
 
 🔴<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
 🔴<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
 🔴<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
 🔴<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
-🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
+🔴<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/><br/>
                               - le **Modèle Conceptuel de Données** (MCD)<br/>
-                              - le **Modèle Logique de Données** (MLD).<br/><br/><br/>
+                              - le **Modèle Logique de Données** (MLD).<br/>
+<br/>
+<br/>
+<br/>
 
 <h2 align="center">Listing des acteurs</h2>
 
