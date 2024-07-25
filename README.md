@@ -41,12 +41,12 @@
 
 <h3>🛠️ Détails Techniques</h3><br/>
 
-<h4>☑️ MCD - MLD</h4>
+<img src="./checked-red.png" width="14"/><strong> MCD - MLD</strong> <br/><br/>
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
 
 <br/><br/>
 
-<h4>☑️ Maquette</h4>
+<img src="./checked-red.png" width="14"/><strong>  Maquette</strong> <br/><br/>
 La création d'une maquette avec Figma a permis de définir la position des éléments visuels et d'améliorer les aspects UI/UX du projet.
 <br/><br/>
 
@@ -54,22 +54,22 @@ La création d'une maquette avec Figma a permis de définir la position des él�
 
 <br/><br/>
 
-<h4>☑️ HTML Sémantique et CSS</h4>
+<img src="./checked-red.png" width="14"/><strong> HTML Sémantique et CSS</strong> <br/><br/>
 Pour la structure de la page, le langage HTML a été utilisé avec des balises sémantiques pour améliorer l'accessibilité et le référencement. Le style de la page a été réalisé avec CSS, incluant des effets au survol pour améliorer l'expérience utilisateur.
   
 <br/><br/>
 
-<h4>☑️ Templates Réutilisables</h4>
+<img src="./checked-red.png" width="14"/><strong>  Templates Réutilisables</strong> <br/><br/>
 Des templates réutilisables ont été créés et intégrés dans une mise en page - layout -  avec une gestion de temporisation de sortie grâce aux fonctions ob_start() et ob_get_clean() pour un rendu fluide.
   
 <br/><br/>
 
-<h4>☑️ MySQL</h4>
+<img src="./checked-red.png" width="14"/><strong>  MySQL</stronh> <br/><br/>
 La base de données a été créée et gérée avec MySQL, utilisant le langage SQL pour manipuler les données.
   
 <br/><br/>
 
-<h4>☑️ Swiper.js</h4>
+<img src="./checked-red.png" width="14"/><strong>  Swiper.js</strong> <br/><br/>
 La librairie Swiper.js a été utilisée pour ajouter de l'interactivité, permettant de présenter les affiches de films sous forme de carrousel sur la page d'accueil. </br></br>
 
 ![](swiper-taken.png)
