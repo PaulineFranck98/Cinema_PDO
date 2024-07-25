@@ -66,7 +66,32 @@ Des templates réutilisables ont été créés et intégrés dans une mise en pa
 
 <img src="./checked-red.png" width="14"/><strong>  MySQL</stronh> <br/><br/>
 La base de données a été créée et gérée avec MySQL, utilisant le langage SQL pour manipuler les données.
-  
+<br/>
+
+````php
+
+public function findGenreByID($id) {
+
+    $dao = new DAO();
+    
+    $sql = "SELECT g.genre_name, g.id_genre
+            FROM genre g
+            WHERE g.id_genre = :id";
+    
+    $sql1 ="SELECT g.genre_name, f.title, f.id_film, f.picture
+            FROM genre g
+            INNER JOIN film_genre fg ON fg.genre_id = g.id_genre
+            INNER JOIN film f ON fg.film_id = f.id_film
+            WHERE g.id_genre = :id";
+    
+    $params = [
+        ':id' => $id,
+    ];
+}
+
+`````
+
+
 <br/><br/>
 
 <img src="./checked-red.png" width="14"/><strong>  Swiper.js</strong> <br/><br/>
