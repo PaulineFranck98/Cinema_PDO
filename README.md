@@ -10,7 +10,7 @@
 
 <br/></br>
 
-<h3>⚙️ Technologies utilisées</h3>
+<h3 align="center">⚙️ Technologies utilisées</h3>
 
 <br/>
 
