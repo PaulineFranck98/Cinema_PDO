@@ -56,7 +56,7 @@
 <br/>
 
 
-<h3>🛠️ Détails Techniques</h3><br/>
+<h3 align="center">🛠️ Détails Techniques</h3><br/>
 
 <img src="./checked-red.png" width="14"/><strong> MCD - MLD</strong> <br/><br/>
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
