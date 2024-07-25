@@ -121,6 +121,7 @@ class PersonController{
 
 
     public function updateActor($id)
+    
     {
         
         $dao = new DAO();
