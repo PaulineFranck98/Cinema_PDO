@@ -107,6 +107,15 @@ Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Creat
 
 <img src="./checked-red.png" width="14"/><strong>  Faille d’Upload </strong> <br/><br/>
 Pour prévenir les failles de sécurité liées au téléchargement de fichiers malveillants, des vérifications de type MIME et de taille ont été mises en place. 
+<br/>
+
+````php
+$allowed = [
+    "jpg" => "image/jpg",
+    "jpeg" => "image/jpeg",
+    "png" => "image/png",
+];
+````
 
 <br/>
 <br/>
