@@ -117,6 +117,11 @@ Des contrôleurs ont été mis en place pour gérer les opérations CRUD - Creat
 ````php
 public function updateMovie($id)
 ````
+<br/>
+
+````php
+public function addActor()
+````
 
 <br/><br/>
 
