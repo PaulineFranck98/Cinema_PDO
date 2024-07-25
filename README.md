@@ -61,6 +61,15 @@ Pour la structure de la page, le langage HTML a été utilisé avec des balises 
 
 <img src="./checked-red.png" width="14"/><strong>  Templates Réutilisables</strong> <br/><br/>
 Des templates réutilisables ont été créés et intégrés dans une mise en page - layout -  avec une gestion de temporisation de sortie grâce aux fonctions ob_start() et ob_get_clean() pour un rendu fluide.
+<br/>
+
+````php
+<?php
+    $title = "Liste des acteurs";
+    $content = ob_get_clean();
+    require "views/template.php";
+?>
+````
   
 <br/><br/>
 
