@@ -156,7 +156,7 @@ class GenreController{
 }  
 
 // } else {
-//     // Ajout
+//     // Ajout genre
 //     $sql = "INSERT INTO genre (genre_name) VALUES (:genre_name)";
 //     $params = [':genre_name' => $genre_name];
 // }
